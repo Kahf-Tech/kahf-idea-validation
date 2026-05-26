@@ -3,288 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KahfCRM — Idea Validation</title>
+    <title>KahfCRM — Idea Validation for Education Consultancies</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary: #7c3aed;
-            --primary-light: #8b5cf6;
-            --primary-dark: #5b21b6;
-            --accent: #f59e0b;
-            --accent-green: #10b981;
-            --accent-red: #ef4444;
-            --accent-blue: #3b82f6;
-            --text: #1e293b;
-            --text-light: #64748b;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
+            --p: #7c3aed;
+            --p-light: #8b5cf6;
+            --p-dark: #5b21b6;
+            --p-bg: #f5f3ff;
+            --s-bg: #f8fafc;
+            --card: #ffffff;
             --border: #e2e8f0;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --text-light: #94a3b8;
             --radius: 12px;
+            --radius-lg: 16px;
             --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,.07), 0 2px 4px -2px rgba(0,0,0,.05);
             --shadow-lg: 0 10px 25px rgba(0,0,0,.08);
             --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
-        body {
-            font-family: var(--font);
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
+        body { font-family: var(--font); background: var(--s-bg); color: var(--text); line-height: 1.6; }
 
-        /* ── Navigation ── */
+        /* ─── Nav ─── */
         nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 16px 48px; background: var(--card-bg); border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
         }
-        nav .logo { font-weight: 700; font-size: 1.3rem; color: var(--primary); }
+        nav .inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        nav .logo { font-weight: 700; font-size: 1.2rem; color: var(--p); display: flex; align-items: center; gap: 10px; }
+        nav .logo .mark { width: 32px; height: 32px; background: var(--p); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: .9rem; }
         nav .logo span { color: var(--text); }
-        nav .nav-links { display: flex; gap: 24px; align-items: center; }
-        nav .nav-links a { text-decoration: none; color: var(--text-light); font-size: .9rem; font-weight: 500; }
-        nav .nav-links a:hover { color: var(--primary); }
-        .btn { display: inline-block; padding: 8px 20px; border-radius: 8px; font-weight: 600;
-                font-size: .85rem; text-decoration: none; cursor: pointer; transition: all .2s; border: none; }
-        .btn-primary { background: var(--primary); color: #fff; }
-        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(124,58,237,.3); }
-        .btn-outline { border: 1.5px solid var(--border); color: var(--text); background: transparent; }
-        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
-        .btn-lg { padding: 12px 32px; font-size: 1rem; }
+        nav .links { display: flex; gap: 28px; align-items: center; }
+        nav .links a { text-decoration: none; color: var(--text-muted); font-size: .88rem; font-weight: 500; transition: color .2s; }
+        nav .links a:hover { color: var(--p); }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 22px; border-radius: 8px; font-weight: 600; font-size: .85rem; text-decoration: none; border: none; cursor: pointer; transition: all .2s; }
+        .btn-p { background: var(--p); color: #fff; }
+        .btn-p:hover { background: var(--p-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(124,58,237,.3); }
+        .btn-o { border: 1.5px solid var(--border); color: var(--text); background: transparent; }
+        .btn-o:hover { border-color: var(--p); color: var(--p); }
+        .btn-lg { padding: 14px 36px; font-size: 1rem; border-radius: 10px; }
+        .btn-w { background: #fff; color: var(--p); }
+        .btn-w:hover { background: #f8fafc; transform: translateY(-1px); }
+        .btn-sm { padding: 6px 16px; font-size: .82rem; }
+        .hamburger { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 4px; }
+        .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+        .mobile-menu { display: none; padding: 0 0 16px; }
+        .mobile-menu a { display: block; padding: 10px 0; color: var(--text-muted); text-decoration: none; font-weight: 500; }
+        .mobile-menu a:hover { color: var(--p); }
+        .mobile-menu .btn { margin-top: 8px; width: 100%; }
 
-        /* ── Hero ── */
+        /* ─── Hero ─── */
         .hero {
-            text-align: center; padding: 80px 24px 60px;
-            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #dbeafe 100%);
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #4338ca 100%);
+            overflow: hidden; position: relative;
         }
-        .hero h1 { font-size: 2.8rem; font-weight: 800; max-width: 700px; margin: 0 auto 16px; line-height: 1.2; }
-        .hero h1 span { color: var(--primary); }
-        .hero p { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 32px; }
-        .hero .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: .5;
+        }
+        .hero .inner { max-width: 1100px; margin: 0 auto; padding: 80px 24px 100px; position: relative; z-index: 1; }
         .hero-badge {
-            display: inline-block; background: rgba(124,58,237,.1); color: var(--primary);
-            padding: 4px 14px; border-radius: 50px; font-size: .8rem; font-weight: 600; margin-bottom: 20px;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,.12); backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,.2);
+            padding: 6px 16px; border-radius: 50px; font-size: .82rem; font-weight: 500; color: #fff; margin-bottom: 24px;
         }
+        .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #f87171; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+        .hero h1 { font-size: 3rem; font-weight: 800; color: #fff; line-height: 1.15; max-width: 720px; margin-bottom: 16px; }
+        .hero h1 .highlight { background: linear-gradient(135deg, #fde047, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 1.1rem; color: rgba(255,255,255,.78); max-width: 580px; margin-bottom: 32px; line-height: 1.7; }
+        .hero .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+        .hero .trust-bar { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 36px; }
+        .hero .trust-bar span { display: flex; align-items: center; gap: 6px; font-size: .82rem; color: rgba(255,255,255,.65); }
+        .hero .trust-bar svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .hero-mockup { margin-top: 48px; }
+        .hero-mockup .frame { background: #fff; border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(0,0,0,.2); overflow: hidden; max-width: 900px; margin: 0 auto; }
+        .frame-bar { background: #1e293b; padding: 12px 16px; display: flex; align-items: center; gap: 8px; }
+        .frame-bar .dots { display: flex; gap: 6px; }
+        .frame-bar .dots span { width: 10px; height: 10px; border-radius: 50%; }
+        .frame-bar .dots span:nth-child(1) { background: #ef4444; }
+        .frame-bar .dots span:nth-child(2) { background: #eab308; }
+        .frame-bar .dots span:nth-child(3) { background: #22c55e; }
+        .frame-bar .url { flex: 1; background: rgba(255,255,255,.08); border-radius: 4px; padding: 4px 10px; font-size: .78rem; color: rgba(255,255,255,.5); text-align: center; }
+        .frame-body { background: linear-gradient(135deg, #f5f3ff, #ede9fe); padding: 32px; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+        .frame-body .placeholder { text-align: center; }
+        .frame-body .placeholder .icon { width: 56px; height: 56px; background: var(--p); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 1.5rem; color: #fff; }
+        .frame-body .placeholder h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 4px; }
+        .frame-body .placeholder p { font-size: .85rem; color: var(--text-muted); }
 
-        /* ── Dashboard Mockup ── */
-        .dashboard-section { padding: 60px 24px; }
-        .dashboard-section .section-label { text-align: center; font-size: .8rem; text-transform: uppercase;
-                letter-spacing: 2px; color: var(--text-light); margin-bottom: 40px; }
-        .dashboard {
-            max-width: 1000px; margin: 0 auto;
-            background: var(--card-bg); border-radius: var(--radius);
-            box-shadow: var(--shadow-lg); overflow: hidden;
+        /* ─── Sections common ─── */
+        section { padding: 80px 24px; }
+        section .inner { max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+        .section-sub { text-align: center; font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 48px; }
+
+        /* ─── Problem/Solution ─── */
+        .prob-sol { background: var(--card); }
+        .prob-sol .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+        .prob-sol .box { border-radius: var(--radius-lg); padding: 32px; }
+        .prob-sol .box h3 { font-size: 1.3rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .prob-sol .box ul { list-style: none; }
+        .prob-sol .box li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: .95rem; color: var(--text); }
+        .prob-sol .box li svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+        .prob-red { background: #fef2f2; border: 1px solid #fecaca; }
+        .prob-red h3 { color: #dc2626; }
+        .prob-red svg { color: #ef4444; }
+        .prob-green { background: #f0fdf4; border: 1px solid #bbf7d0; }
+        .prob-green h3 { color: #16a34a; }
+        .prob-green svg { color: #22c55e; }
+
+        /* ─── Stats ─── */
+        .stats { padding: 48px 24px; }
+        .stats .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 800px; margin: 0 auto; }
+        .stats .item { text-align: center; }
+        .stats .item .num { font-size: 2.5rem; font-weight: 800; color: var(--p); }
+        .stats .item .label { font-size: .9rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* ─── Features ─── */
+        .features { background: var(--s-bg); }
+        .features .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .feature-card {
+            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+            padding: 28px; transition: box-shadow .2s, transform .2s;
         }
-        .dash-header {
-            padding: 20px 24px; border-bottom: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+        .feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .feature-card .icon {
+            width: 48px; height: 48px; border-radius: var(--radius);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; margin-bottom: 16px;
         }
-        .dash-header h2 { font-size: 1.1rem; font-weight: 700; }
-        .dash-header h2 small { font-weight: 400; color: var(--text-light); font-size: .85rem; }
-        .dash-tabs {
-            display: flex; gap: 0; border-bottom: 1px solid var(--border);
-            padding: 0 24px; background: #fafafa;
+        .feature-card h4 { font-size: 1rem; margin-bottom: 6px; }
+        .feature-card p { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
+        .icon-blue { background: #dbeafe; color: #2563eb; }
+        .icon-green { background: #d1fae5; color: #059669; }
+        .icon-purple { background: #ede9fe; color: #7c3aed; }
+        .icon-orange { background: #fed7aa; color: #d97706; }
+        .icon-red { background: #fee2e2; color: #dc2626; }
+        .icon-indigo { background: #e0e7ff; color: #4f46e5; }
+
+        .features-more { margin-top: 32px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px; }
+        .features-more h3 { text-align: center; font-size: 1.2rem; margin-bottom: 24px; }
+        .features-more .grid { grid-template-columns: repeat(2, 1fr); }
+        .features-more .item { display: flex; align-items: flex-start; gap: 12px; }
+        .features-more .item svg { width: 20px; height: 20px; color: #22c55e; flex-shrink: 0; margin-top: 2px; }
+        .features-more .item h4 { font-size: .92rem; margin-bottom: 2px; }
+        .features-more .item p { font-size: .82rem; color: var(--text-muted); }
+
+        /* ─── Dashboard Preview ─── */
+        .dashboard-preview { background: var(--card); }
+        .dashboard-preview .tab-btns { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+        .dashboard-preview .tab-btns button {
+            padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: .85rem;
+            border: 1px solid var(--border); background: #fff; color: var(--text-muted); cursor: default; transition: all .2s;
         }
-        .dash-tabs .tab { padding: 12px 20px; font-size: .85rem; font-weight: 500;
-                color: var(--text-light); border-bottom: 2px solid transparent; cursor: default; }
-        .dash-tabs .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
-        .dash-toolbar {
-            padding: 12px 24px; border-bottom: 1px solid var(--border);
-            display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
-        }
-        .dash-toolbar input[type=search] {
-            padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px;
-            font-size: .8rem; width: 200px; background: #f8fafc;
-        }
-        .dash-toolbar .filter { padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
-                font-size: .78rem; background: #fff; color: var(--text-light); }
+        .dashboard-preview .tab-btns button.active { background: var(--p); color: #fff; border-color: var(--p); }
+        .dash-frame { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+        .dash-head { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .dash-head h3 { font-size: 1rem; }
+        .dash-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); padding: 0 24px; background: #fafafa; overflow-x: auto; white-space: nowrap; }
+        .dash-tabs .t { padding: 10px 18px; font-size: .82rem; font-weight: 500; color: var(--text-muted); border-bottom: 2px solid transparent; cursor: default; }
+        .dash-tabs .t.active { color: var(--p); border-bottom-color: var(--p); }
+        .dash-toolbar { padding: 12px 24px; border-bottom: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .dash-toolbar input { padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: .8rem; width: 180px; background: #f8fafc; }
+        .dash-toolbar .chip { padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: .76rem; background: #fff; color: var(--text-muted); }
         .dash-body { padding: 16px 24px 24px; }
 
-        /* ── Idea Cards ── */
-        .idea-card {
-            background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
-            padding: 16px 20px; margin-bottom: 12px;
-            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-            transition: box-shadow .2s;
+        .idea-row {
+            display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+            border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px;
+            transition: box-shadow .2s; flex-wrap: wrap;
         }
-        .idea-card:hover { box-shadow: var(--shadow); }
-        .idea-icon {
-            width: 40px; height: 40px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
-        }
-        .idea-icon.destination { background: #dbeafe; color: #2563eb; }
-        .idea-icon.service { background: #fef3c7; color: #d97706; }
-        .idea-icon.course { background: #d1fae5; color: #059669; }
-        .idea-body { flex: 1; min-width: 200px; }
-        .idea-body h4 { font-size: .95rem; font-weight: 600; margin-bottom: 2px; }
-        .idea-body .meta { font-size: .78rem; color: var(--text-light); display: flex; gap: 12px; flex-wrap: wrap; }
-        .stage-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px;
-                border-radius: 50px; font-size: .75rem; font-weight: 600; }
-        .stage-concept { background: #f1f5f9; color: #475569; }
-        .stage-researching { background: #dbeafe; color: #2563eb; }
-        .stage-validating { background: #fef3c7; color: #d97706; }
-        .stage-approved { background: #d1fae5; color: #059669; }
-        .stage-rejected { background: #fee2e2; color: #dc2626; }
-        .progress-bar {
-            width: 100px; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden;
-        }
-        .progress-bar .fill { height: 100%; background: var(--primary); border-radius: 3px; }
-        .progress-bar .fill.green { background: var(--accent-green); }
+        .idea-row:hover { box-shadow: var(--shadow); }
+        .idea-row .ico { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .idea-row .info { flex: 1; min-width: 160px; }
+        .idea-row .info h4 { font-size: .9rem; }
+        .idea-row .info .meta { font-size: .76rem; color: var(--text-muted); display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
+        .stage { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 50px; font-size: .73rem; font-weight: 600; }
+        .st-concept { background: #f1f5f9; color: #475569; }
+        .st-research { background: #dbeafe; color: #2563eb; }
+        .st-valid { background: #fef3c7; color: #d97706; }
+        .st-approved { background: #d1fae5; color: #059669; }
+        .st-rejected { background: #fee2e2; color: #dc2626; }
+        .idea-row .progress { text-align: right; }
+        .idea-row .progress .pbar { width: 90px; height: 5px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
+        .idea-row .progress .pbar .fill { height: 100%; border-radius: 3px; }
 
-        /* ── Detail Preview ── */
-        .detail-preview {
-            max-width: 1000px; margin: 32px auto 0;
-            background: var(--card-bg); border-radius: var(--radius);
-            box-shadow: var(--shadow-lg); overflow: hidden;
+        /* ─── Pricing ─── */
+        .pricing { background: var(--s-bg); }
+        .pricing .offer {
+            background: linear-gradient(135deg, #fef3c7, #fffbeb);
+            border: 2px solid #fde68a; border-radius: var(--radius-lg);
+            padding: 20px; text-align: center; margin-bottom: 40px;
         }
-        .detail-top {
-            padding: 20px 24px; border-bottom: 1px solid var(--border);
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+        .pricing .offer svg { width: 20px; height: 20px; color: #d97706; vertical-align: middle; margin-right: 6px; }
+        .pricing .offer strong { color: #92400e; }
+        .pricing .offer p { color: #b45309; font-size: .9rem; margin-top: 2px; }
+        .pricing .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 960px; margin: 0 auto; align-items: start; }
+        .plan {
+            background: var(--card); border: 2px solid var(--border); border-radius: var(--radius-lg);
+            padding: 32px; transition: border-color .2s; position: relative;
         }
-        .detail-top h3 { font-size: 1rem; font-weight: 700; }
-        .detail-actions { display: flex; gap: 8px; }
-        .detail-actions button { padding: 4px 14px; border-radius: 6px; border: 1px solid var(--border);
-                font-size: .8rem; font-weight: 500; cursor: default; background: #fff; }
-        .detail-actions .approve { color: var(--accent-green); border-color: var(--accent-green); }
-        .detail-actions .reject { color: var(--accent-red); border-color: var(--accent-red); }
-        .detail-tabs {
-            display: flex; border-bottom: 1px solid var(--border); padding: 0 24px; background: #fafafa;
+        .plan:hover { border-color: var(--p-light); }
+        .plan.featured {
+            background: var(--p); border-color: var(--p);
+            transform: scale(1.04);
         }
-        .detail-tabs .tab { padding: 10px 20px; font-size: .82rem; font-weight: 500;
-                color: var(--text-light); border-bottom: 2px solid transparent; cursor: default; }
-        .detail-tabs .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
-        .detail-body { padding: 20px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .detail-field { margin-bottom: 12px; }
-        .detail-field label { font-size: .75rem; text-transform: uppercase; letter-spacing: .5px;
-                color: var(--text-light); font-weight: 600; }
-        .detail-field p { font-size: .88rem; margin-top: 2px; }
+        .plan.featured .badge {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: #fbbf24; color: #78350f; font-size: .78rem; font-weight: 700;
+            padding: 4px 16px; border-radius: 50px;
+        }
+        .plan h3 { font-size: 1.2rem; margin-bottom: 2px; }
+        .plan p.sub { font-size: .85rem; color: var(--text-muted); margin-bottom: 16px; }
+        .plan .price { font-size: 2.2rem; font-weight: 800; }
+        .plan .price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+        .plan .save { font-size: .8rem; color: #16a34a; font-weight: 600; margin-bottom: 20px; }
+        .plan ul { list-style: none; margin-bottom: 24px; }
+        .plan ul li { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; font-size: .88rem; }
+        .plan ul li svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+        .plan.featured, .plan.featured h3, .plan.featured .price { color: #fff; }
+        .plan.featured .sub { color: rgba(255,255,255,.7); }
+        .plan.featured ul li { color: rgba(255,255,255,.9); }
+        .plan.featured .price span { color: rgba(255,255,255,.6); }
+        .plan.featured ul li svg { color: #fbbf24; }
+        .plan .btn { width: 100%; }
+        .plan.featured .btn { background: #fff; color: var(--p); }
+        .plan.featured .btn:hover { background: #f8fafc; }
+        .plan .btn.btn-o { width: 100%; }
 
-        /* ── Stats row ── */
-        .stats-row {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 16px; max-width: 1000px; margin: 24px auto 0; padding: 0 24px;
+        /* ─── FAQ ─── */
+        .faq { background: var(--card); }
+        .faq .list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+        .faq details {
+            background: var(--s-bg); border: 1px solid var(--border); border-radius: var(--radius);
+            overflow: hidden; transition: box-shadow .2s;
         }
-        .stat-card {
-            background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
-            padding: 20px; text-align: center;
+        .faq details:hover { box-shadow: var(--shadow); }
+        .faq summary {
+            padding: 18px 22px; font-weight: 600; font-size: .95rem;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            list-style: none;
         }
-        .stat-card .num { font-size: 1.8rem; font-weight: 800; color: var(--primary); }
-        .stat-card .label { font-size: .82rem; color: var(--text-light); margin-top: 2px; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary svg { width: 18px; height: 18px; color: var(--text-light); transition: transform .2s; flex-shrink: 0; }
+        .faq details[open] summary svg { transform: rotate(180deg); }
+        .faq .a { padding: 0 22px 18px; font-size: .88rem; color: var(--text-muted); line-height: 1.7; }
 
-        /* ── Features ── */
-        .features { padding: 60px 24px; background: var(--card-bg); }
-        .features h2 { text-align: center; font-size: 1.8rem; margin-bottom: 8px; }
-        .features > p { text-align: center; color: var(--text-light); margin-bottom: 48px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                gap: 24px; max-width: 1000px; margin: 0 auto; }
-        .feature-card { padding: 24px; border: 1px solid var(--border); border-radius: var(--radius); }
-        .feature-card .icon { font-size: 1.5rem; margin-bottom: 12px; }
-        .feature-card h4 { font-size: 1rem; margin-bottom: 6px; }
-        .feature-card p { font-size: .85rem; color: var(--text-light); }
-
-        /* ── How It Works ── */
-        .how-it-works { padding: 60px 24px; }
-        .how-it-works h2 { text-align: center; font-size: 1.8rem; margin-bottom: 48px; }
-        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: 24px; max-width: 900px; margin: 0 auto; }
-        .step { text-align: center; }
-        .step .num { width: 44px; height: 44px; border-radius: 50%; background: var(--primary);
-                color: #fff; display: flex; align-items: center; justify-content: center;
-                margin: 0 auto 12px; font-weight: 700; font-size: 1.1rem; }
-        .step h4 { font-size: .95rem; margin-bottom: 6px; }
-        .step p { font-size: .82rem; color: var(--text-light); }
-
-        /* ── Stages Timeline ── */
-        .stages { padding: 60px 24px; background: var(--card-bg); }
-        .stages h2 { text-align: center; font-size: 1.8rem; margin-bottom: 8px; }
-        .stages > p { text-align: center; color: var(--text-light); margin-bottom: 48px; }
-        .stage-row { display: flex; justify-content: center; gap: 0; max-width: 800px;
-                margin: 0 auto; flex-wrap: wrap; }
-        .stage-item { flex: 1; min-width: 120px; text-align: center; padding: 16px; position: relative; }
-        .stage-item:not(:last-child)::after {
-            content: ''; position: absolute; top: 30px; right: -50%; width: 100%;
-            height: 2px; background: var(--border); z-index: 0;
+        /* ─── CTA ─── */
+        .cta {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9, #4338ca);
         }
-        .stage-item .dot { width: 20px; height: 20px; border-radius: 50%; background: var(--border);
-                margin: 0 auto 8px; position: relative; z-index: 1; }
-        .stage-item .dot.active { background: var(--primary); box-shadow: 0 0 0 4px rgba(124,58,237,.15); }
-        .stage-item .dot.green { background: var(--accent-green); }
-        .stage-item .dot.red { background: var(--accent-red); }
-        .stage-item .s-label { font-size: .8rem; font-weight: 500; }
-        .stage-item .s-desc { font-size: .72rem; color: var(--text-light); }
-
-        /* ── Footer ── */
-        footer {
-            text-align: center; padding: 40px 24px;
-            font-size: .85rem; color: var(--text-light);
-            border-top: 1px solid var(--border);
+        .cta .inner { text-align: center; }
+        .cta h2 { color: #fff; font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+        .cta p { color: rgba(255,255,255,.75); font-size: 1.05rem; max-width: 520px; margin: 0 auto 32px; }
+        .cta-form {
+            max-width: 520px; margin: 0 auto;
+            background: rgba(255,255,255,.1); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,.15); border-radius: var(--radius-lg);
+            padding: 32px;
         }
-        footer a { color: var(--primary); text-decoration: none; }
+        .cta-form input, .cta-form select, .cta-form textarea {
+            width: 100%; padding: 12px 14px; border: 1px solid rgba(255,255,255,.2);
+            border-radius: 8px; background: rgba(255,255,255,.9); font-size: .9rem;
+            outline: none; transition: border-color .2s;
+        }
+        .cta-form input:focus, .cta-form select:focus, .cta-form textarea:focus { border-color: #fff; }
+        .cta-form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        .cta-form .full { margin-bottom: 12px; }
+        .cta-form .btn { width: 100%; padding: 14px; font-size: 1rem; margin-top: 8px; background: #fff; color: var(--p); }
+        .cta-form .btn:hover { background: #f1f5f9; }
+        .cta-form .foot { font-size: .78rem; color: rgba(255,255,255,.5); margin-top: 12px; text-align: center; }
 
-        /* ── Responsive ── */
+        /* ─── Footer ─── */
+        footer { background: #0f172a; color: #94a3b8; padding: 48px 24px 32px; }
+        footer .inner { max-width: 1100px; margin: 0 auto; }
+        footer .grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
+        footer h4 { color: #fff; font-size: .95rem; margin-bottom: 12px; }
+        footer p, footer a { font-size: .85rem; color: #94a3b8; text-decoration: none; }
+        footer a:hover { color: #fff; }
+        footer ul { list-style: none; }
+        footer ul li { margin-bottom: 6px; }
+        footer .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        footer .brand .mark { width: 28px; height: 28px; background: var(--p); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: .8rem; }
+        footer .brand span { color: #fff; font-weight: 700; }
+        footer .bottom { border-top: 1px solid #1e293b; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: .82rem; }
+        footer .disclaimer { margin-top: 16px; padding: 12px; background: #1e293b; border-radius: 8px; font-size: .75rem; text-align: center; }
+
+        /* ─── Responsive ─── */
         @media (max-width: 900px) {
-            .dash-tabs { overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; padding: 0 16px; }
-            .detail-tabs { overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; padding: 0 16px; }
+            .features .grid { grid-template-columns: repeat(2, 1fr); }
+            .features-more .grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing .grid { grid-template-columns: 1fr; max-width: 400px; }
+            .plan.featured { transform: none; }
+            footer .grid { grid-template-columns: repeat(2, 1fr); }
+            .prob-sol .grid { grid-template-columns: 1fr; }
         }
+
         @media (max-width: 768px) {
-            nav { padding: 12px 16px; flex-direction: column; gap: 10px; }
-            nav .nav-links { width: 100%; justify-content: center; flex-wrap: wrap; gap: 12px; }
-            .hero { padding: 40px 16px 32px; }
-            .hero h1 { font-size: 1.6rem; }
+            nav .links { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu.open { display: block; }
+            .hero .inner { padding: 48px 20px 64px; }
+            .hero h1 { font-size: 2rem; }
             .hero p { font-size: 1rem; }
-            .hero .btn-group { flex-direction: column; align-items: center; }
-            .hero .btn-group .btn { width: 100%; max-width: 280px; text-align: center; }
-            .dash-header { flex-direction: column; align-items: stretch; gap: 10px; }
-            .dash-header h2 { font-size: 1rem; }
-            .dash-toolbar { padding: 10px 16px; gap: 6px; }
-            .dash-toolbar input[type=search] { width: 100%; }
-            .dash-toolbar .filter { font-size: .72rem; padding: 4px 8px; }
+            .hero .btns { flex-direction: column; align-items: stretch; }
+            .hero .btns .btn { text-align: center; }
+            .hero .trust-bar { justify-content: center; }
+            .frame-body { padding: 20px; min-height: 140px; }
+            section { padding: 48px 20px; }
+            .section-title { font-size: 1.5rem; }
+            .stats .grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+            .stats .item .num { font-size: 1.8rem; }
+            .features .grid { grid-template-columns: 1fr; }
+            .features-more .grid { grid-template-columns: 1fr; }
+            .dash-head { flex-direction: column; align-items: stretch; gap: 10px; }
+            .dash-tabs { padding: 0 16px; }
+            .dash-toolbar input { width: 100%; }
             .dash-body { padding: 12px 16px 16px; }
-            .idea-card { padding: 12px 14px; gap: 10px; }
-            .idea-body { min-width: 0; }
-            .idea-body h4 { font-size: .88rem; }
-            .idea-body .meta { gap: 6px; font-size: .72rem; }
-            .detail-body { grid-template-columns: 1fr; }
-            .detail-top { flex-direction: column; align-items: flex-start; gap: 10px; padding: 16px; }
-            .detail-top h3 { font-size: .9rem; }
-            .detail-tabs { padding: 0 16px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-            .detail-tabs .tab { padding: 10px 14px; font-size: .78rem; }
-            .detail-body { padding: 16px; gap: 12px; }
-            .stats-row { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 16px; }
-            .stat-card { padding: 14px; }
-            .stat-card .num { font-size: 1.4rem; }
-            .features { padding: 40px 16px; }
-            .features h2 { font-size: 1.4rem; }
-            .feature-grid { gap: 16px; }
-            .feature-card { padding: 18px; }
-            .how-it-works { padding: 40px 16px; }
-            .how-it-works h2 { font-size: 1.4rem; }
-            .steps { gap: 20px; }
-            .stage-row { flex-direction: column; align-items: center; gap: 0; }
-            .stage-item:not(:last-child)::after { display: none; }
-            .stage-item { padding: 12px; display: flex; align-items: center; gap: 12px; text-align: left; width: 100%; max-width: 280px; }
-            .stage-item .dot { margin: 0; flex-shrink: 0; }
-            .stages { padding: 40px 16px; }
-            .stages h2 { font-size: 1.4rem; }
-            .dashboard-section { padding: 40px 16px; }
-            footer { padding: 32px 16px; }
+            .idea-row { padding: 12px 14px; }
+            .idea-row .info { min-width: 0; }
+            .pricing .grid { max-width: 100%; }
+            .plan { padding: 24px; }
+            .cta-form .row2 { grid-template-columns: 1fr; }
+            footer .grid { grid-template-columns: 1fr; text-align: center; }
+            footer .brand { justify-content: center; }
+            footer .bottom { flex-direction: column; text-align: center; }
         }
+
         @media (max-width: 480px) {
-            nav .nav-links a { font-size: .82rem; }
-            .hero h1 { font-size: 1.35rem; }
-            .hero-badge { font-size: .72rem; }
-            .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .stat-card { padding: 10px; }
-            .stat-card .num { font-size: 1.2rem; }
-            .stat-card .label { font-size: .72rem; }
-            .idea-card { flex-direction: column; align-items: stretch; }
-            .idea-card > div:last-child { text-align: left !important; display: flex; align-items: center; gap: 10px; }
-            .idea-card > div:last-child .progress-bar { width: 80px; }
-            .detail-actions { width: 100%; justify-content: flex-start; }
-            .detail-actions button { font-size: .75rem; padding: 4px 10px; }
-            .feature-grid { grid-template-columns: 1fr; }
-            .steps { grid-template-columns: 1fr; }
-            .stage-item { max-width: 100%; }
+            .hero h1 { font-size: 1.6rem; }
+            .stats .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .idea-row { flex-direction: column; align-items: stretch; }
+            .idea-row .progress { text-align: left; display: flex; align-items: center; gap: 10px; }
+            .dashboard-preview .tab-btns button { font-size: .78rem; padding: 8px 14px; }
         }
     </style>
 </head>
@@ -292,266 +351,361 @@
 
 <!-- ─── Nav ─── -->
 <nav>
-    <div class="logo">Kahf<span>CRM</span></div>
-    <div class="nav-links">
-        <a href="#">Features</a>
-        <a href="#">How It Works</a>
-        <a href="#">Docs</a>
-        <a href="#" class="btn btn-primary">Get Early Access</a>
+    <div class="inner">
+        <div class="logo"><div class="mark">K</div> Kahf<span>CRM</span></div>
+        <div class="links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="#cta" class="btn btn-p btn-sm">Get Early Access</a>
+        </div>
+        <button class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mm">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#cta" class="btn btn-p">Get Early Access</a>
     </div>
 </nav>
 
 <!-- ─── Hero ─── -->
 <section class="hero">
-    <span class="hero-badge">🚀 New Feature</span>
-    <h1>Validate Product Ideas<br>Before You <span>Build Anything</span></h1>
-    <p>Stop guessing. A structured workspace to capture, research, and validate new study destinations, courses, and services — before committing resources.</p>
-    <div class="btn-group">
-        <a href="#" class="btn btn-primary btn-lg">Try Demo →</a>
-        <a href="#" class="btn btn-outline btn-lg">View on GitHub</a>
-    </div>
-</section>
-
-<!-- ─── Stats ─── -->
-<div class="stats-row">
-    <div class="stat-card"><div class="num">47</div><div class="label">Matched Leads</div></div>
-    <div class="stat-card"><div class="num">12</div><div class="label">Active Ideas</div></div>
-    <div class="stat-card"><div class="num">5</div><div class="label">Validated Segments</div></div>
-    <div class="stat-card"><div class="num">3</div><div class="label">Approved</div></div>
-</div>
-
-<!-- ─── Dashboard ─── -->
-<section class="dashboard-section">
-    <div class="section-label">⬤ LIVE DEMO</div>
-    <div class="dashboard">
-        <div class="dash-header">
-            <h2>Idea Validation <small>· 12 ideas</small></h2>
-            <a href="#" class="btn btn-primary" style="font-size:.82rem;padding:6px 16px;">+ New Idea</a>
+    <div class="inner">
+        <div class="hero-badge"><span class="dot"></span> New Feature — Now in Beta</div>
+        <h1>Validate Product Ideas<br>Before You <span class="highlight">Build Anything</span></h1>
+        <p>A structured workspace for education consultancies to capture, research, and validate new study destinations, courses, and services — before committing time and money.</p>
+        <div class="btns">
+            <a href="#demo" class="btn btn-w btn-lg">See the Dashboard →</a>
+            <a href="#pricing" class="btn btn-o btn-lg" style="border-color:rgba(255,255,255,.3);color:#fff;">View Pricing</a>
         </div>
-        <div class="dash-tabs">
-            <span class="tab active">All Ideas</span>
-            <span class="tab">My Ideas</span>
-            <span class="tab">Archived</span>
+        <div class="trust-bar">
+            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> No credit card required</span>
+            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Setup in 24 hours</span>
+            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Built for South Asian consultancies</span>
         </div>
-        <div class="dash-toolbar">
-            <input type="search" placeholder="Search ideas..." value="Canada">
-            <span class="filter">Stage: All ▼</span>
-            <span class="filter">Category: All ▼</span>
-        </div>
-        <div class="dash-body">
-            <!-- Card 1 -->
-            <div class="idea-card">
-                <div class="idea-icon destination">🌍</div>
-                <div class="idea-body">
-                    <h4>Study in Canada — AI/ML Programs</h4>
-                    <div class="meta">
-                        <span class="stage-badge stage-validating">🔬 Validating</span>
-                        <span>Assigned: Farzana</span>
-                        <span>Updated: 2 days ago</span>
+        <div class="hero-mockup">
+            <div class="frame">
+                <div class="frame-bar">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="url">kahfcrm.com/app/idea-validation</div>
+                </div>
+                <div class="frame-body">
+                    <div class="placeholder">
+                        <div class="icon">💡</div>
+                        <h3>Idea Validation Dashboard</h3>
+                        <p>Full-screen preview — see live demo below ↓</p>
                     </div>
-                </div>
-                <div style="text-align:right;font-size:.78rem;color:var(--text-light);">
-                    <div style="margin-bottom:4px;">3/5 validated</div>
-                    <div class="progress-bar"><div class="fill" style="width:60%;"></div></div>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="idea-card">
-                <div class="idea-icon course">📚</div>
-                <div class="idea-body">
-                    <h4>IELTS Bootcamp — Online Cohort</h4>
-                    <div class="meta">
-                        <span class="stage-badge stage-researching">📝 Researching</span>
-                        <span>Assigned: N/A</span>
-                        <span>Updated: 5 days ago</span>
-                    </div>
-                </div>
-                <div style="text-align:right;font-size:.78rem;color:var(--text-light);">
-                    <div style="margin-bottom:4px;">2 defined</div>
-                    <div class="progress-bar"><div class="fill" style="width:40%;background:#3b82f6;"></div></div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="idea-card">
-                <div class="idea-icon service">🎯</div>
-                <div class="idea-body">
-                    <h4>Scholarship Matching Service</h4>
-                    <div class="meta">
-                        <span class="stage-badge stage-concept">💡 Concept</span>
-                        <span>Assigned: N/A</span>
-                        <span>Updated: 1 week ago</span>
-                    </div>
-                </div>
-                <div style="text-align:right;font-size:.78rem;color:var(--text-light);">
-                    <div style="margin-bottom:4px;">0/2 validated</div>
-                    <div class="progress-bar"><div class="fill" style="width:0%;"></div></div>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="idea-card">
-                <div class="idea-icon destination">🇦🇺</div>
-                <div class="idea-body">
-                    <h4>Australia Regional Visa Pathway</h4>
-                    <div class="meta">
-                        <span class="stage-badge stage-approved">✅ Approved</span>
-                        <span>Assigned: Ashiqur</span>
-                        <span>Updated: 3 days ago</span>
-                    </div>
-                </div>
-                <div style="text-align:right;font-size:.78rem;color:var(--text-light);">
-                    <div style="margin-bottom:4px;">4/4 validated</div>
-                    <div class="progress-bar"><div class="fill green" style="width:100%;"></div></div>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Detail Preview -->
-    <div class="detail-preview">
-        <div class="detail-top">
-            <h3>Study in Canada — AI/ML Programs</h3>
-            <div class="detail-actions">
-                <button class="approve">✓ Approve</button>
-                <button class="reject">✗ Reject</button>
-                <button>Edit</button>
+<!-- ─── Problem/Solution ─── -->
+<section class="prob-sol">
+    <div class="inner">
+        <h2 class="section-title">Why Structured Validation?</h2>
+        <p class="section-sub">South Asian consultancies evaluate dozens of new products every year. Most decisions are gut-feel. Change that.</p>
+        <div class="grid">
+            <div class="box prob-red">
+                <h3><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> The Challenge</h3>
+                <ul>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> No structured way to evaluate new destinations &amp; courses</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> Gut-feel decisions waste resources on bad ideas</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> Team collaboration scattered across spreadsheets &amp; chat</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> Miss good opportunities because nobody tracked them</li>
+                </ul>
+            </div>
+            <div class="box prob-green">
+                <h3><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Our Solution</h3>
+                <ul>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Capture ideas instantly with structured forms</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Define target segments with demographics &amp; pain points</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Assign research tasks &amp; track validation progress</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Approve or kill ideas with confidence — data-backed</li>
+                </ul>
             </div>
         </div>
-        <div class="detail-tabs">
-            <span class="tab active">Overview</span>
-            <span class="tab">Target Users</span>
-            <span class="tab">Research</span>
-            <span class="tab">Activity Log</span>
-        </div>
-        <div class="detail-body">
-            <div>
-                <div class="detail-field">
-                    <label>Problem Statement</label>
-                    <p>Bangladeshi CS grads lack clear pathway to Canadian AI/ML programs. Existing consultancies focus on coursework-based programs only.</p>
-                </div>
-                <div class="detail-field">
-                    <label>Proposed Solution</label>
-                    <p>Partnership with 3 Canadian colleges offering AI/ML postgraduate diplomas with co-op.</p>
-                </div>
-            </div>
-            <div>
-                <div class="detail-field">
-                    <label>Key Assumptions</label>
-                    <p>• Students have &gt;7.0 IELTS<br>• Budget range: 20–30 lakh BDT<br>• Demand for AI/ML is growing in BD</p>
-                </div>
-                <div class="detail-field">
-                    <label>Validation Summary</label>
-                    <p>Segments: 5 total · 3 validated · 1 rejected · 1 pending<br>Matched Leads: 47</p>
-                </div>
+        <div class="stats">
+            <div class="grid">
+                <div class="item"><div class="num">20,000+</div><div class="label">Consultancy firms in SA</div></div>
+                <div class="item"><div class="num">₹50Cr+</div><div class="label">Wasted on bad products yearly</div></div>
+                <div class="item"><div class="num">87%</div><div class="label">Better decisions with data</div></div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ─── Features ─── -->
-<section class="features">
-    <h2>Why a Structured Validation Process?</h2>
-    <p>South Asian consultancies evaluate dozens of new products every year. Most decisions are gut-feel. Change that.</p>
-    <div class="feature-grid">
-        <div class="feature-card">
-            <div class="icon">📥</div>
-            <h4>Capture Instantly</h4>
-            <p>Log product ideas before they're forgotten — new destinations, courses, services, or packages.</p>
+<section class="features" id="features">
+    <div class="inner">
+        <h2 class="section-title">Everything You Need to Validate Ideas</h2>
+        <p class="section-sub">A complete toolkit to capture, research, and decide on new products — built into KahfCRM.</p>
+        <div class="grid">
+            <div class="feature-card">
+                <div class="icon icon-blue">📥</div>
+                <h4>Capture Instantly</h4>
+                <p>Log product ideas before they're forgotten. Auto-save drafts, categorize by type, and assign team members.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon icon-green">🎯</div>
+                <h4>Define Target Users</h4>
+                <p>Add segments with demographics, budgets, pain points, and estimated market size. Link real leads from your CRM.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon icon-purple">🔬</div>
+                <h4>Research &amp; Validate</h4>
+                <p>Assign team members to research each segment. Add findings, attach files, and track validation status per segment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon icon-orange">📊</div>
+                <h4>Data-Driven Decisions</h4>
+                <p>See matched lead counts, validation progress bars, and team input — all in one place before green-lighting.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon icon-red">📎</div>
+                <h4>Link Real Leads</h4>
+                <p>Connect CRM leads as validation samples. Instantly see how many active leads match each target segment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon icon-indigo">🔄</div>
+                <h4>Track Progress</h4>
+                <p>Move ideas through stages: Concept → Researching → Validating → Approved/Rejected. Full activity log.</p>
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="icon">🎯</div>
-            <h4>Define Target Users</h4>
-            <p>Add segments with demographics, pain points, and estimated market size. Link real leads as evidence.</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon">🔬</div>
-            <h4>Research &amp; Validate</h4>
-            <p>Assign team members to research segments. Add findings, attach files, and track validation status.</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon">📊</div>
-            <h4>Data-Driven Decisions</h4>
-            <p>See matched lead counts, validation progress, and team input — all in one place before green-lighting.</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon">📎</div>
-            <h4>Link Real Leads</h4>
-            <p>Connect leads from your CRM as validation samples. Instantly see how many matches exist per segment.</p>
-        </div>
-        <div class="feature-card">
-            <div class="icon">🔄</div>
-            <h4>Track Progress</h4>
-            <p>Move ideas through stages: Concept → Researching → Validating → Approved/Rejected. Full activity log.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ─── How It Works ─── -->
-<section class="how-it-works">
-    <h2>How It Works</h2>
-    <div class="steps">
-        <div class="step">
-            <div class="num">1</div>
-            <h4>Create an Idea</h4>
-            <p>Title, category, problem statement, and key assumptions. Auto-saves as draft.</p>
-        </div>
-        <div class="step">
-            <div class="num">2</div>
-            <h4>Define Segments</h4>
-            <p>Add target user profiles with demographics, budgets, and pain points.</p>
-        </div>
-        <div class="step">
-            <div class="num">3</div>
-            <h4>Research &amp; Validate</h4>
-            <p>Assign researchers, add findings, link leads, and validate assumptions.</p>
-        </div>
-        <div class="step">
-            <div class="num">4</div>
-            <h4>Decide</h4>
-            <p>Approve with one click or reject with reason. Create campaigns from approved ideas.</p>
+        <div class="features-more">
+            <h3>More Powerful Features</h3>
+            <div class="grid">
+                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Role-Based Access</h4><p>Admin, Manager, Staff, Agent — each with appropriate permissions.</p></div></div>
+                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Activity Timeline</h4><p>Full activity log for every idea — who did what and when.</p></div></div>
+                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Lead Matching</h4><p>Auto-count how many leads match a segment's criteria from your CRM.</p></div></div>
+                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Task Assignment</h4><p>Assign researchers to segments and track their progress.</p></div></div>
+                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>File Attachments</h4><p>Attach research PDFs, survey results, and supporting docs.</p></div></div>
+                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Campaign Integration</h4><p>Turn approved ideas into email campaigns directly from KahfCRM.</p></div></div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- ─── Stages ─── -->
-<section class="stages">
-    <h2>Idea Lifecycle</h2>
-    <p>Every idea moves through a clear validation pipeline</p>
-    <div class="stage-row">
-        <div class="stage-item">
-            <div class="dot active"></div>
-            <div class="s-label">💡 Concept</div>
-            <div class="s-desc">New idea captured</div>
+<!-- ─── Dashboard Preview ─── -->
+<section class="dashboard-preview" id="demo">
+    <div class="inner">
+        <h2 class="section-title">See It in Action</h2>
+        <p class="section-sub">A live preview of the Idea Validation dashboard — real interface, real data.</p>
+        <div class="dash-frame">
+            <div class="dash-head">
+                <h3>Idea Validation <span style="font-weight:400;color:var(--text-muted);font-size:.85rem;">· 12 ideas</span></h3>
+                <span class="btn btn-p btn-sm">+ New Idea</span>
+            </div>
+            <div class="dash-tabs">
+                <span class="t active">All Ideas</span>
+                <span class="t">My Ideas</span>
+                <span class="t">Archived</span>
+            </div>
+            <div class="dash-toolbar">
+                <input type="search" placeholder="Search ideas..." value="Canada">
+                <span class="chip">Stage: All ▼</span>
+                <span class="chip">Category: All ▼</span>
+            </div>
+            <div class="dash-body">
+                <div class="idea-row">
+                    <div class="ico icon-blue">🌍</div>
+                    <div class="info">
+                        <h4>Study in Canada — AI/ML Programs</h4>
+                        <div class="meta"><span class="stage st-valid">🔬 Validating</span><span>Assigned: Farzana</span><span>Updated: 2 days ago</span></div>
+                    </div>
+                    <div class="progress"><div class="pbar" style="margin-bottom:2px;"><div class="fill" style="width:60%;background:var(--p);"></div></div><span style="font-size:.74rem;color:var(--text-muted);">3/5 validated</span></div>
+                </div>
+                <div class="idea-row">
+                    <div class="ico icon-green">📚</div>
+                    <div class="info">
+                        <h4>IELTS Bootcamp — Online Cohort</h4>
+                        <div class="meta"><span class="stage st-research">📝 Researching</span><span>Assigned: N/A</span><span>Updated: 5 days ago</span></div>
+                    </div>
+                    <div class="progress"><div class="pbar" style="margin-bottom:2px;"><div class="fill" style="width:40%;background:#3b82f6;"></div></div><span style="font-size:.74rem;color:var(--text-muted);">2 defined</span></div>
+                </div>
+                <div class="idea-row">
+                    <div class="ico icon-orange">🎯</div>
+                    <div class="info">
+                        <h4>Scholarship Matching Service</h4>
+                        <div class="meta"><span class="stage st-concept">💡 Concept</span><span>Assigned: N/A</span><span>Updated: 1 week ago</span></div>
+                    </div>
+                    <div class="progress"><div class="pbar" style="margin-bottom:2px;"><div class="fill" style="width:0%;"></div></div><span style="font-size:.74rem;color:var(--text-muted);">0/2 validated</span></div>
+                </div>
+                <div class="idea-row">
+                    <div class="ico icon-purple">🇦🇺</div>
+                    <div class="info">
+                        <h4>Australia Regional Visa Pathway</h4>
+                        <div class="meta"><span class="stage st-approved">✅ Approved</span><span>Assigned: Ashiqur</span><span>Updated: 3 days ago</span></div>
+                    </div>
+                    <div class="progress"><div class="pbar" style="margin-bottom:2px;"><div class="fill" style="width:100%;background:#10b981;"></div></div><span style="font-size:.74rem;color:var(--text-muted);">4/4 validated</span></div>
+                </div>
+            </div>
         </div>
-        <div class="stage-item">
-            <div class="dot" style="background:var(--accent-blue);"></div>
-            <div class="s-label">📝 Researching</div>
-            <div class="s-desc">Gathering data</div>
+    </div>
+</section>
+
+<!-- ─── Pricing ─── -->
+<section class="pricing" id="pricing">
+    <div class="inner">
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <p class="section-sub">Choose the plan that fits your consultancy. Free 14-day trial on all plans.</p>
+        <div class="offer">
+            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <strong>Early Bird Offer</strong> — First 50 consultancies get <strong>20% off</strong> for the first year
+            <p>Plus: free onboarding &amp; dedicated support during beta</p>
         </div>
-        <div class="stage-item">
-            <div class="dot" style="background:var(--accent);"></div>
-            <div class="s-label">🔬 Validating</div>
-            <div class="s-desc">Testing assumptions</div>
+        <div class="grid">
+            <div class="plan">
+                <h3>Starter</h3>
+                <p class="sub">For small consultancies</p>
+                <div class="price">$29<span>/month</span></div>
+                <div class="save">Early bird: $23/mo</div>
+                <ul>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Up to 5 team members</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 50 active ideas</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Basic CRM integration</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Email support</li>
+                </ul>
+                <button class="btn btn-o">Start Free Trial</button>
+            </div>
+            <div class="plan featured">
+                <div class="badge">Most Popular</div>
+                <h3>Professional</h3>
+                <p class="sub">For growing teams</p>
+                <div class="price">$79<span>/month</span></div>
+                <div class="save" style="color:#fde68a;">Early bird: $63/mo</div>
+                <ul>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Up to 20 team members</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Unlimited ideas</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Full CRM integration</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Lead matching &amp; analytics</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Priority support</li>
+                </ul>
+                <button class="btn">Start Free Trial</button>
+            </div>
+            <div class="plan">
+                <h3>Enterprise</h3>
+                <p class="sub">For large institutions</p>
+                <div class="price">Custom</div>
+                <div class="save" style="visibility:hidden;">.</div>
+                <ul>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Unlimited team members</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Dedicated account manager</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Custom integrations</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> SLA guarantee</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Human scoring option</li>
+                </ul>
+                <button class="btn btn-o">Contact Sales</button>
+            </div>
         </div>
-        <div class="stage-item">
-            <div class="dot green"></div>
-            <div class="s-label">✅ Approved</div>
-            <div class="s-desc">Ready to build</div>
+    </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq" id="faq">
+    <div class="inner">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Everything you need to know about the Idea Validation feature.</p>
+        <div class="list">
+            <details>
+                <summary>How does Idea Validation integrate with my existing CRM data? <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+                <div class="a">When you add target segments, the system automatically scans your existing leads and shows how many match each segment's criteria. You can also manually link specific leads as validation evidence.</div>
+            </details>
+            <details>
+                <summary>What stages can an idea go through?</summary>
+                <div class="a">Every idea progresses through: <strong>Concept</strong> (just captured) → <strong>Researching</strong> (gathering data) → <strong>Validating</strong> (testing assumptions) → <strong>Approved</strong> (ready to build) or <strong>Rejected</strong> (killed with reason captured).</div>
+            </details>
+            <details>
+                <summary>Can multiple team members work on the same idea?</summary>
+                <div class="a">Absolutely. You can assign different researchers to different target segments within the same idea. Each person adds their findings, and managers can review everything before making a decision.</div>
+            </details>
+            <details>
+                <summary>Is there a way to export validation reports?</summary>
+                <div class="a">Currently in development. The Professional plan will include PDF export of complete validation reports, including segment research, matched leads, and decision history.</div>
+            </details>
+            <details>
+                <summary>How long does setup take?</summary>
+                <div class="a">Most teams are up and running within 24 hours. No technical expertise needed — if you already use KahfCRM, the Idea Validation tab appears automatically with your existing team permissions.</div>
+            </details>
+            <details>
+                <summary>Can I approve an idea and create a campaign immediately?</summary>
+                <div class="a">Yes! When you approve an idea, you have the option to automatically create an email campaign in KahfCRM's marketing module — perfect for launching new services to your lead database.</div>
+            </details>
         </div>
-        <div class="stage-item">
-            <div class="dot" style="background:var(--accent-red);"></div>
-            <div class="s-label">❌ Rejected</div>
-            <div class="s-desc">Killed with reason</div>
+    </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta" id="cta">
+    <div class="inner">
+        <h2>Ready to Start Validating Smarter?</h2>
+        <p>Join the early adopters. Get a free 14-day trial with full access to all features. No credit card required.</p>
+        <div class="cta-form">
+            <div class="row2">
+                <input type="text" placeholder="Your name" value="">
+                <input type="email" placeholder="Email address" value="">
+            </div>
+            <div class="row2">
+                <input type="text" placeholder="Consultancy name" value="">
+                <input type="tel" placeholder="Phone number" value="">
+            </div>
+            <div class="full">
+                <textarea rows="3" placeholder="Any questions or specific needs?" style="resize:none;"></textarea>
+            </div>
+            <button class="btn">Start Free 14-Day Trial</button>
+            <div class="foot">By submitting, you agree to our Privacy Policy. We'll never spam you.</div>
         </div>
     </div>
 </section>
 
 <!-- ─── Footer ─── -->
 <footer>
-    <p>Built for <a href="#">KahfCRM</a> · Idea Validation Module · © 2026</p>
-    <p style="margin-top:4px;font-size:.78rem;">Made with ☕ by the Kahf Team</p>
+    <div class="inner">
+        <div class="grid">
+            <div>
+                <div class="brand"><div class="mark">K</div><span>KahfCRM</span></div>
+                <p>Multi-tenant SaaS CRM built for South Asian education consultancies. Idea Validation is our newest module — make data-backed product decisions.</p>
+            </div>
+            <div>
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>© 2026 KahfCRM. All rights reserved.</p>
+            <p>Made with ☕ in Bangladesh 🇧🇩</p>
+        </div>
+        <div class="disclaimer">
+            All product names, logos, and brands are property of their respective owners. This is a demonstration landing page.
+        </div>
+    </div>
 </footer>
 
 </body>
