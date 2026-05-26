@@ -43,9 +43,21 @@
         .mobile-menu a:hover { color: var(--p); }
         .mobile-menu .btn { margin-top: 8px; width: 100%; }
 
+        /* ─── Hero ─── */
         .hero { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #4338ca 100%); overflow: hidden; position: relative; }
         .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: .5; }
         .hero .inner { max-width: 1100px; margin: 0 auto; padding: 72px 24px 80px; position: relative; z-index: 1; }
+
+        /* Floating stat badges */
+        .hero-floaters { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+        .floating-badge { position: absolute; display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.2); padding: 8px 16px; border-radius: 50px; font-size: .78rem; font-weight: 500; color: #fff; white-space: nowrap; animation: float 4s ease-in-out infinite; }
+        .floating-badge .fb-icon { font-size: 1rem; }
+        .floating-badge:nth-child(1) { top: 12%; right: 5%; animation-delay: 0s; }
+        .floating-badge:nth-child(2) { top: 38%; left: 3%; animation-delay: 1s; }
+        .floating-badge:nth-child(3) { top: 62%; right: 3%; animation-delay: 2s; }
+        .floating-badge:nth-child(4) { top: 82%; left: 6%; animation-delay: 0.5s; }
+        @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
+
         .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,.2); padding: 6px 16px; border-radius: 50px; font-size: .82rem; font-weight: 500; color: #fff; margin-bottom: 24px; }
         .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #f87171; animation: pulse 2s infinite; }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
@@ -55,9 +67,19 @@
         .hero .btns { display: flex; gap: 12px; flex-wrap: wrap; }
         .hero .btns .btn-o { border: 2px solid rgba(255,255,255,.5); color: #fff; font-weight: 600; }
         .hero .btns .btn-o:hover { border-color: #fff; background: rgba(255,255,255,.15); }
-        .hero .trust-bar { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 28px; }
-        .hero-mockup { margin-top: 40px; }
-        .hero-mockup .frame { background: #fff; border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(0,0,0,.2); overflow: hidden; max-width: 860px; margin: 0 auto; }
+
+        /* Social proof strip */
+        .hero-social { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 28px; padding: 14px 20px; background: rgba(255,255,255,.08); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); }
+        .hero-social .label { font-size: .82rem; color: rgba(255,255,255,.65); font-weight: 500; }
+        .hero-social .avatars { display: flex; }
+        .hero-social .avatars span { width: 32px; height: 32px; border-radius: 50%; border: 2px solid rgba(255,255,255,.3); display: flex; align-items: center; justify-content: center; font-size: .65rem; font-weight: 700; color: #fff; margin-right: -8px; }
+        .hero-social .avatars span:last-child { margin-right: 0; }
+        .hero-social .trust-text { font-size: .85rem; color: rgba(255,255,255,.8); font-weight: 500; }
+        .hero-social .trust-text strong { color: #fde047; }
+
+        .hero-mockup { margin-top: 36px; }
+        .hero-mockup .frame { background: #fff; border-radius: var(--radius-lg); box-shadow: 0 25px 70px rgba(0,0,0,.25); overflow: hidden; max-width: 920px; margin: 0 auto; transition: box-shadow .3s; }
+        .hero-mockup .frame:hover { box-shadow: 0 30px 80px rgba(0,0,0,.35); }
         .frame-bar { background: #1e293b; padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
         .frame-bar .dots { display: flex; gap: 5px; }
         .frame-bar .dots span { width: 8px; height: 8px; border-radius: 50%; }
@@ -67,16 +89,25 @@
         .frame-bar .url { flex: 1; background: rgba(255,255,255,.06); border-radius: 4px; padding: 4px 10px; font-size: .74rem; color: rgba(255,255,255,.4); text-align: center; }
         .frame-bar .actions { display: flex; gap: 8px; }
         .frame-bar .actions span { width: 12px; height: 12px; border-radius: 2px; background: rgba(255,255,255,.06); }
-        .frame-body { padding: 20px 24px; background: #f8fafc; }
-        .f-top { display: flex; gap: 20px; margin-bottom: 20px; }
-        .f-top .stat { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px 20px; flex: 1; text-align: center; }
+
+        .frame-body { display: flex; }
+        .f-sidebar { width: 48px; background: #1e293b; display: flex; flex-direction: column; align-items: center; padding: 12px 0; gap: 16px; }
+        .f-sidebar span { width: 24px; height: 24px; border-radius: 6px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; font-size: .7rem; }
+        .f-sidebar span.active { background: var(--p); }
+        .f-content { flex: 1; padding: 20px 24px; background: #f8fafc; }
+        .f-top { display: flex; gap: 16px; margin-bottom: 20px; }
+        .f-top .stat { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; flex: 1; text-align: center; }
         .f-top .stat strong { display: block; font-size: 1.3rem; color: var(--p); }
         .f-top .stat { font-size: .78rem; color: var(--text-muted); }
-        .f-main { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+        .f-top .stat .trend { font-size: .68rem; font-weight: 600; margin-top: 2px; }
+        .f-top .stat .trend.up { color: #059669; }
+        .f-top .stat .trend.down { color: #dc2626; }
+        .f-main { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
         .f-list { background: #fff; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+        .f-list .fl-head { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: .78rem; font-weight: 600; color: var(--text-muted); }
         .f-row { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
         .f-row:last-child { border: none; }
-        .f-row .av { width: 28px; height: 28px; border-radius: 50%; background: var(--p-bg); flex-shrink: 0; }
+        .f-row .av { width: 28px; height: 28px; border-radius: 50%; background: var(--p-bg); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: .65rem; font-weight: 600; color: var(--p); }
         .f-row div { flex: 1; }
         .f-row div strong { display: block; font-size: .82rem; }
         .f-row div span { font-size: .72rem; color: var(--text-muted); }
@@ -87,10 +118,8 @@
         .f-chart { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
         .bar-chart { display: flex; flex-direction: column; gap: 8px; }
         .bar-chart > div { display: flex; align-items: center; gap: 8px; font-size: .72rem; color: var(--text-muted); }
-        .bar-chart > div .bar { height: 20px; background: var(--p); border-radius: 4px; transition: width .4s; min-width: 4px; }
+        .bar-chart > div .bar { height: 20px; background: linear-gradient(90deg, var(--p-light), var(--p)); border-radius: 4px; transition: width .4s; min-width: 4px; }
         .bar-chart > div span:first-child { width: 30px; }
-        .hero .trust-bar span { display: flex; align-items: center; gap: 6px; font-size: .82rem; color: rgba(255,255,255,.65); }
-        .hero .trust-bar svg { width: 16px; height: 16px; flex-shrink: 0; }
 
         section { padding: 80px 24px; }
         section .inner { max-width: 1100px; margin: 0 auto; }
@@ -138,6 +167,54 @@
         .ex-card h4 { font-size: .9rem; margin-bottom: 4px; }
         .ex-card p { font-size: .78rem; color: var(--text-muted); }
 
+        /* ─── High-Power Features (new) ─── */
+        .power-features { background: var(--s-bg); }
+        .pf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .pf-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: box-shadow .2s; }
+        .pf-card:hover { box-shadow: var(--shadow-md); }
+        .pf-card.full { grid-column: 1 / -1; }
+        .pf-card h4 { display: flex; align-items: center; gap: 10px; font-size: 1rem; margin-bottom: 14px; }
+        .pf-card h4 .badge-hot { display: inline-block; background: #fef2f2; color: #dc2626; font-size: .65rem; font-weight: 700; padding: 2px 8px; border-radius: 50px; margin-left: 6px; }
+
+        /* Timeline */
+        .tl { display: flex; align-items: flex-start; gap: 0; overflow-x: auto; padding: 8px 0 16px; }
+        .tl-item { display: flex; flex-direction: column; align-items: center; min-width: 100px; position: relative; }
+        .tl-item::after { content: ''; position: absolute; top: 14px; left: 50%; width: 100%; height: 2px; background: var(--border); z-index: 0; }
+        .tl-item:last-child::after { display: none; }
+        .tl-dot { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .7rem; background: #fff; border: 2px solid var(--border); z-index: 1; position: relative; }
+        .tl-dot.done { background: #d1fae5; border-color: #059669; }
+        .tl-dot.active { background: #ede9fe; border-color: var(--p); animation: tl-pulse 2s infinite; }
+        @keyframes tl-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(124,58,237,.4); } 50% { box-shadow: 0 0 0 8px rgba(124,58,237,.1); } }
+        .tl-label { font-size: .7rem; color: var(--text-muted); margin-top: 6px; text-align: center; max-width: 90px; font-weight: 500; }
+        .tl-date { font-size: .6rem; color: var(--text-light); margin-top: 2px; }
+
+        /* Scoring table */
+        .score-tbl { width: 100%; border-collapse: collapse; font-size: .82rem; }
+        .score-tbl th { text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--border); font-size: .7rem; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted); font-weight: 600; }
+        .score-tbl td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+        .score-tbl tr:last-child td { border: none; }
+        .score-tbl .total-row td { border-top: 2px solid var(--p); font-weight: 700; color: var(--p); }
+        .score-bar { height: 6px; background: var(--border); border-radius: 4px; overflow: hidden; width: 100%; max-width: 120px; }
+        .score-bar span { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #22c55e, #16a34a); }
+
+        /* Rules table */
+        .rules-tbl { width: 100%; border-collapse: collapse; font-size: .82rem; }
+        .rules-tbl th { text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--border); font-size: .7rem; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted); font-weight: 600; }
+        .rules-tbl td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+        .rules-tbl .rule-if { background: #fef3c7; padding: 2px 8px; border-radius: 4px; font-size: .75rem; font-weight: 600; color: #92400e; display: inline-block; }
+        .rules-tbl .rule-then { background: #d1fae5; padding: 2px 8px; border-radius: 4px; font-size: .75rem; font-weight: 600; color: #065f46; display: inline-block; }
+
+        /* Source attribution chart */
+        .src-chart { display: flex; flex-direction: column; gap: 10px; }
+        .src-row { display: flex; align-items: center; gap: 10px; }
+        .src-row .src-label { font-size: .78rem; font-weight: 500; min-width: 90px; }
+        .src-row .src-bar-wrap { flex: 1; height: 24px; background: #f1f5f9; border-radius: 6px; overflow: hidden; position: relative; }
+        .src-row .src-bar-wrap .src-bar { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 8px; font-size: .7rem; color: #fff; font-weight: 600; }
+        .src-row .src-stat { font-size: .72rem; color: var(--text-muted); min-width: 80px; text-align: right; }
+
+        .pf-card .sms-badge { display: inline-flex; align-items: center; gap: 8px; background: #fef3c7; border: 1px solid #fde68a; border-radius: 8px; padding: 12px 16px; font-size: .82rem; font-weight: 600; color: #92400e; margin-top: 8px; }
+        .pf-card .sms-badge span { font-weight: 400; color: #b45309; }
+
         .demos { background: var(--s-bg); }
         .demo-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
         .demo-tabs button { padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: .85rem; border: 1px solid var(--border); background: #fff; color: var(--text-muted); cursor: default; transition: all .2s; }
@@ -173,7 +250,14 @@
         .d-card h5 { font-size: .85rem; margin-bottom: 2px; }
         .d-card p { font-size: .74rem; color: var(--text-muted); }
 
+        /* ─── Testimonials ─── */
         .testimonials { background: var(--card); }
+        .trusted-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px 36px; margin-bottom: 48px; padding: 24px 32px; background: var(--s-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+        .trusted-bar .tb-label { font-size: .8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .trusted-bar .tb-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 28px; }
+        .trusted-bar .tb-logo { display: flex; align-items: center; gap: 8px; }
+        .trusted-bar .tb-logo .lp { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: #fff; }
+        .trusted-bar .tb-logo .lp-text { font-size: .82rem; font-weight: 600; color: var(--text); }
         .tm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
         .tm-card { background: var(--s-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; }
         .stars { color: #eab308; font-size: .9rem; margin-bottom: 12px; letter-spacing: 2px; }
@@ -251,16 +335,19 @@
             .tm-grid { grid-template-columns: 1fr; max-width: 500px; }
             .modules .grid { grid-template-columns: repeat(2, 1fr); }
             .extras .grid { grid-template-columns: repeat(2, 1fr); }
+            .pf-grid { grid-template-columns: 1fr; }
             .pricing .grid { grid-template-columns: 1fr; max-width: 400px; }
             .plan.featured { transform: none; }
             footer .grid { grid-template-columns: repeat(2, 1fr); }
             .prob-sol .grid { grid-template-columns: 1fr; }
             .d-kanban { grid-template-columns: repeat(2, 1fr); }
+            .frame-body { flex-direction: column; }
+            .f-sidebar { width: 100%; flex-direction: row; padding: 8px 12px; justify-content: center; }
         }
         @media (max-width: 900px) {
             .f-main { grid-template-columns: 1fr; }
             .f-top { flex-wrap: wrap; }
-            .f-top .stat { flex: 1 1 calc(50% - 10px); }
+            .f-top .stat { flex: 1 1 calc(50% - 8px); }
         }
         @media (max-width: 768px) {
             nav .links { display: none; }
@@ -271,12 +358,15 @@
             .hero p { font-size: 1rem; }
             .hero .btns { flex-direction: column; align-items: stretch; }
             .hero .btns .btn { text-align: center; }
-            .hero .trust-bar { justify-content: center; gap: 16px; }
             .hero-mockup { margin-top: 28px; }
-            .frame-body { padding: 14px 16px; }
+            .frame-body { padding: 0; }
+            .f-content { padding: 14px 16px; }
+            .f-sidebar { width: 100%; flex-direction: row; padding: 8px 12px; justify-content: center; }
             .f-top .stat { padding: 10px 12px; }
             .f-top .stat strong { font-size: 1rem; }
             .f-row { padding: 8px 12px; }
+            .floating-badge { display: none; }
+            .hero-social { flex-direction: column; align-items: flex-start; gap: 10px; }
             section { padding: 48px 20px; }
             .sec-title { font-size: 1.5rem; }
             .stats .grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
@@ -290,10 +380,11 @@
             footer .brand { justify-content: center; }
             footer .bottom { flex-direction: column; text-align: center; }
             .d-kanban { grid-template-columns: 1fr; }
+            .trusted-bar { flex-direction: column; gap: 16px; padding: 20px; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.6rem; }
-            .stats .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .stats .grid { grid-template-columns: repeat(1, 1fr); gap: 12px; }
             .d-tbar input { width: 100%; }
         }
     </style>
@@ -306,6 +397,7 @@
         <div class="logo"><div class="mark">K</div> Kahf<span>CRM</span></div>
         <div class="links">
             <a href="#modules">Modules</a>
+            <a href="#features">Features</a>
             <a href="#demos">Demo</a>
             <a href="#pricing">Pricing</a>
             <a href="#faq">FAQ</a>
@@ -315,6 +407,7 @@
     </div>
     <div class="mobile-menu" id="mm">
         <a href="#modules">Modules</a>
+        <a href="#features">Features</a>
         <a href="#demos">Demo</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
@@ -324,18 +417,31 @@
 
 <!-- ─── Hero ─── -->
 <section class="hero">
+    <div class="hero-floaters">
+        <div class="floating-badge"><span class="fb-icon">📊</span> 47% avg. conversion</div>
+        <div class="floating-badge"><span class="fb-icon">⚡</span> 2hr vs 2 day follow-up</div>
+        <div class="floating-badge"><span class="fb-icon">🎯</span> 1,248 leads tracked</div>
+        <div class="floating-badge"><span class="fb-icon">🇧🇩</span> bKash & Nagad ready</div>
+    </div>
     <div class="inner">
         <div class="hero-badge"><span class="dot"></span> Now in Beta — Built for South Asian Consultancies</div>
-        <h1>All-in-One CRM for<br>Education <span class="hl">Consultancy Firms</span></h1>
-        <p>Manage leads, track applications, run marketing campaigns, and validate product ideas — all from one platform. Designed for the way South Asian consultancies work.</p>
+        <h1>Stop Losing Leads to <span class="hl">Spreadsheets</span></h1>
+        <p>Finally, a CRM built for education consultancies in Bangladesh. Capture every lead from WhatsApp, Facebook, and walk-ins — track applications, automate follow-ups, and grow without the chaos.</p>
         <div class="btns">
             <a href="#demos" class="btn btn-w btn-lg">See Live Demo →</a>
             <a href="#pricing" class="btn btn-o btn-lg">View Pricing</a>
         </div>
-        <div class="trust-bar">
-            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> No credit card required</span>
-            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Multi-tenant SaaS</span>
-            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> bKash &amp; Nagad supported</span>
+        <div class="hero-social">
+            <span class="label">✨ Trusted by</span>
+            <div class="avatars">
+                <span style="background:#2563eb;">EP</span>
+                <span style="background:#059669;">SL</span>
+                <span style="background:#d97706;">GS</span>
+                <span style="background:#dc2626;">EC</span>
+                <span style="background:#7c3aed;">SG</span>
+                <span style="background:#0891b2;">+5</span>
+            </div>
+            <span class="trust-text"><strong>10+ consultancies</strong> across Bangladesh already on board</span>
         </div>
         <div class="hero-mockup">
             <div class="frame">
@@ -345,25 +451,40 @@
                     <div class="actions"><span></span><span></span></div>
                 </div>
                 <div class="frame-body">
-                    <div class="f-top">
-                        <div class="stat"><strong>1,248</strong> Leads</div>
-                        <div class="stat"><strong>84</strong> Apps</div>
-                        <div class="stat"><strong>32</strong> Enrolled</div>
-                        <div class="stat"><strong>47%</strong> Conv.</div>
+                    <div class="f-sidebar">
+                        <span class="active">📊</span>
+                        <span>👥</span>
+                        <span>📋</span>
+                        <span>📧</span>
+                        <span>⚙️</span>
                     </div>
-                    <div class="f-main">
-                        <div class="f-list">
-                            <div class="f-row"><span class="av"></span><div><strong>Fahim Rahman</strong><span>🇨🇦 Canada — CS (MSc)</span></div><span class="f-badge new">New</span></div>
-                            <div class="f-row"><span class="av"></span><div><strong>Nusrat Jahan</strong><span>🇦🇺 Australia — Nursing</span></div><span class="f-badge prog">Contacted</span></div>
-                            <div class="f-row"><span class="av"></span><div><strong>Tanvir Hasan</strong><span>🇬🇧 UK — MBA</span></div><span class="f-badge done">Qualified</span></div>
-                            <div class="f-row"><span class="av"></span><div><strong>Sadia Islam</strong><span>🇨🇦 Canada — AI/ML</span></div><span class="f-badge done">Qualified</span></div>
+                    <div class="f-content">
+                        <div class="f-top">
+                            <div class="stat"><strong>1,248</strong> Leads<div class="trend up">↑ 23%</div></div>
+                            <div class="stat"><strong>84</strong> Apps<div class="trend up">↑ 12%</div></div>
+                            <div class="stat"><strong>32</strong> Enrolled<div class="trend up">↑ 8%</div></div>
+                            <div class="stat"><strong>47%</strong> Conv.<div class="trend up">↑ 5%</div></div>
                         </div>
-                        <div class="f-chart">
-                            <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:6px;">📈 This Month</div>
-                            <div class="bar-chart">
-                                <div><span>Lead</span><div class="bar" style="width:100%;"></div><span>248</span></div>
-                                <div><span>App</span><div class="bar" style="width:34%;"></div><span>84</span></div>
-                                <div><span>Enrl</span><div class="bar" style="width:13%;"></div><span>32</span></div>
+                        <div class="f-main">
+                            <div class="f-list">
+                                <div class="fl-head"><span>Recent Leads</span><span>💰 Proj. Revenue: $84K</span></div>
+                                <div class="f-row"><span class="av">FR</span><div><strong>Fahim Rahman</strong><span>🇨🇦 Canada — CS (MSc) · Facebook</span></div><span class="f-badge new">New</span></div>
+                                <div class="f-row"><span class="av">NJ</span><div><strong>Nusrat Jahan</strong><span>🇦🇺 Australia — Nursing · Referral</span></div><span class="f-badge prog">Contacted</span></div>
+                                <div class="f-row"><span class="av">TH</span><div><strong>Tanvir Hasan</strong><span>🇬🇧 UK — MBA · Website</span></div><span class="f-badge done">Qualified</span></div>
+                                <div class="f-row"><span class="av">SI</span><div><strong>Sadia Islam</strong><span>🇨🇦 Canada — AI/ML · WhatsApp</span></div><span class="f-badge done">Qualified</span></div>
+                            </div>
+                            <div class="f-chart">
+                                <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:10px;font-weight:600;">📈 This Month</div>
+                                <div class="bar-chart">
+                                    <div><span>Lead</span><div class="bar" style="width:100%;"></div><span>248</span></div>
+                                    <div><span>App</span><div class="bar" style="width:34%;"></div><span>84</span></div>
+                                    <div><span>Enrl</span><div class="bar" style="width:13%;"></div><span>32</span></div>
+                                </div>
+                                <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:.72rem;color:var(--text-light);display:flex;justify-content:space-between;">
+                                    <span>📱 WhatsApp: 35%</span>
+                                    <span>📘 Facebook: 40%</span>
+                                    <span>🌐 Website: 20%</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -472,6 +593,140 @@
     </div>
 </section>
 
+<!-- ─── High-Power Features (new) ─── -->
+<section class="power-features" id="features">
+    <div class="inner">
+        <h2 class="sec-title">High-Power Features for Scaling Consultancies</h2>
+        <p class="sec-sub">Go beyond basic CRM. These tools help you score, assign, track, and optimize every lead.</p>
+        <div class="pf-grid">
+
+            <!-- Activity Timeline -->
+            <div class="pf-card">
+                <h4>📜 Activity Timeline per Lead <span class="badge-hot">HOT</span></h4>
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:14px;">See every touchpoint with a lead — calls, emails, status changes — in a single scrollable timeline.</p>
+                <div class="tl">
+                    <div class="tl-item">
+                        <div class="tl-dot done">✓</div>
+                        <div class="tl-label">Lead Captured</div>
+                        <div class="tl-date">Mon 9am</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot done">✓</div>
+                        <div class="tl-label">Initial Call</div>
+                        <div class="tl-date">Mon 3pm</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot done">✓</div>
+                        <div class="tl-label">Docs Sent</div>
+                        <div class="tl-date">Tue 11am</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot active">●</div>
+                        <div class="tl-label">App Submitted</div>
+                        <div class="tl-date">Today</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot">○</div>
+                        <div class="tl-label">Offer Received</div>
+                        <div class="tl-date">—</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot">○</div>
+                        <div class="tl-label">Visa Applied</div>
+                        <div class="tl-date">—</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot">○</div>
+                        <div class="tl-label">Enrolled 🎉</div>
+                        <div class="tl-date">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automated Lead Scoring -->
+            <div class="pf-card">
+                <h4>🎯 Automated Lead Scoring</h4>
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:14px;">Grade every lead automatically based on key criteria. Know who to call first.</p>
+                <table class="score-tbl">
+                    <thead><tr><th>Criteria</th><th>Value</th><th>Score</th><th></th></tr></thead>
+                    <tbody>
+                        <tr><td>🎓 IELTS Score</td><td>7.5</td><td>25/25</td><td><div class="score-bar"><span style="width:100%"></span></div></td></tr>
+                        <tr><td>💰 Budget</td><td>$30k+</td><td>20/20</td><td><div class="score-bar"><span style="width:100%"></span></div></td></tr>
+                        <tr><td>🌍 Destination Match</td><td>Canada</td><td>15/20</td><td><div class="score-bar"><span style="width:75%"></span></div></td></tr>
+                        <tr><td>📚 Course Relevance</td><td>AI/ML</td><td>18/20</td><td><div class="score-bar"><span style="width:90%"></span></div></td></tr>
+                        <tr><td>⏰ Urgency</td><td>6 months</td><td>10/15</td><td><div class="score-bar"><span style="width:67%"></span></div></td></tr>
+                        <tr class="total-row"><td colspan="2"><strong>Total Score</strong></td><td><strong>88/100</strong></td><td><span style="background:#d1fae5;color:#059669;padding:2px 8px;border-radius:50px;font-size:.72rem;font-weight:600;">🔥 Hot Lead</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Rule-Based Lead Assignment -->
+            <div class="pf-card">
+                <h4>🔀 Rule-Based Lead Assignment</h4>
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:14px;">Define rules so every lead goes to the right counselor automatically — no manual triage.</p>
+                <table class="rules-tbl">
+                    <thead><tr><th>Condition</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="rule-if">IF</span> Source = Facebook</td><td><span class="rule-then">→ Assign to Farzana</span></td></tr>
+                        <tr><td><span class="rule-if">IF</span> Destination = Canada</td><td><span class="rule-then">→ Assign to Ashiqur</span></td></tr>
+                        <tr><td><span class="rule-if">IF</span> Budget &lt; $15k</td><td><span class="rule-then">→ Flag for Manager Review</span></td></tr>
+                        <tr><td><span class="rule-if">IF</span> IELTS &lt; 6.0</td><td><span class="rule-then">→ Route to Training Team</span></td></tr>
+                        <tr><td><span class="rule-if">IF</span> Urgency &lt; 3 months</td><td><span class="rule-then">→ Priority Queue</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SMS Gateway + Source Analytics + Export -->
+            <div class="pf-card">
+                <h4>📱 SMS Gateway <span class="badge-hot">🔥 BD MARKET</span></h4>
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:8px;">Send appointment reminders, offer updates, and follow-ups directly via SMS. Bangladeshi gateway providers supported.</p>
+                <div class="sms-badge">📨 Bulk SMS · Appointment Alerts · Campaign Broadcasts · <span>BD gateway ready</span></div>
+                <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;gap:20px;flex-wrap:wrap;">
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;"><span style="font-size:1.3rem;">📤</span><div><strong>Export & Reporting</strong><br><span style="font-size:.74rem;color:var(--text-muted);">CSV, PDF, Excel — pipeline, agent perf, source analytics</span></div></div>
+                    <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;"><span style="font-size:1.3rem;">📡</span><div><strong>Source Analytics</strong><br><span style="font-size:.74rem;color:var(--text-muted);">See which channels convert best</span></div></div>
+                </div>
+            </div>
+
+            <!-- Full-width: Source Attribution Analytics -->
+            <div class="pf-card full">
+                <h4>📊 Source Attribution Analytics</h4>
+                <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:14px;">Know exactly where your leads come from and which sources convert to enrollments.</p>
+                <div class="src-chart">
+                    <div class="src-row">
+                        <span class="src-label">📘 Facebook</span>
+                        <div class="src-bar-wrap"><div class="src-bar" style="width:40%;background:#2563eb;">40%</div></div>
+                        <span class="src-stat">120 leads · 28% conv.</span>
+                    </div>
+                    <div class="src-row">
+                        <span class="src-label">📱 WhatsApp</span>
+                        <div class="src-bar-wrap"><div class="src-bar" style="width:25%;background:#059669;">25%</div></div>
+                        <span class="src-stat">75 leads · 35% conv.</span>
+                    </div>
+                    <div class="src-row">
+                        <span class="src-label">🌐 Website</span>
+                        <div class="src-bar-wrap"><div class="src-bar" style="width:20%;background:#d97706;">20%</div></div>
+                        <span class="src-stat">60 leads · 22% conv.</span>
+                    </div>
+                    <div class="src-row">
+                        <span class="src-label">🤝 Referral</span>
+                        <div class="src-bar-wrap"><div class="src-bar" style="width:10%;background:#7c3aed;">10%</div></div>
+                        <span class="src-stat">30 leads · 45% conv.</span>
+                    </div>
+                    <div class="src-row">
+                        <span class="src-label">🔍 Google Ads</span>
+                        <div class="src-bar-wrap"><div class="src-bar" style="width:5%;background:#dc2626;">5%</div></div>
+                        <span class="src-stat">15 leads · 20% conv.</span>
+                    </div>
+                </div>
+                <div style="margin-top:14px;padding:10px 14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;font-size:.78rem;color:#065f46;display:flex;align-items:center;gap:8px;">
+                    <strong>💡 Insight:</strong> WhatsApp leads convert 7% higher than Facebook. Referral leads have highest conversion at 45%.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <!-- ─── Demo Section ─── -->
 <section class="demos" id="demos">
     <div class="inner">
@@ -576,6 +831,17 @@
     <div class="inner">
         <h2 class="sec-title">Trusted by Consultancies Like Yours</h2>
         <p class="sec-sub">Early adopters are already using KahfCRM to transform their workflow.</p>
+        <div class="trusted-bar">
+            <span class="tb-label">🏢 Used by</span>
+            <div class="tb-logos">
+                <div class="tb-logo"><div class="lp" style="background:#2563eb;">EP</div><span class="lp-text">EduPath BD</span></div>
+                <div class="tb-logo"><div class="lp" style="background:#059669;">SL</div><span class="lp-text">StudyLink Intl</span></div>
+                <div class="tb-logo"><div class="lp" style="background:#d97706;">GS</div><span class="lp-text">Global Study BD</span></div>
+                <div class="tb-logo"><div class="lp" style="background:#dc2626;">EC</div><span class="lp-text">EduConnect</span></div>
+                <div class="tb-logo"><div class="lp" style="background:#7c3aed;">SG</div><span class="lp-text">StudyGo Abroad</span></div>
+                <div class="tb-logo"><div class="lp" style="background:#0891b2;">+5</div><span class="lp-text">more</span></div>
+            </div>
+        </div>
         <div class="tm-grid">
             <div class="tm-card">
                 <div class="stars">★★★★★</div>
