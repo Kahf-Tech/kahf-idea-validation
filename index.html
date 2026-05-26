@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KahfCRM — Idea Validation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-light: #8b5cf6;
+            --primary-dark: #5b21b6;
+            --accent: #f59e0b;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-blue: #3b82f6;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,.08);
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 48px; background: var(--card-bg); border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav .logo { font-weight: 700; font-size: 1.3rem; color: var(--primary); }
+        nav .logo span { color: var(--text); }
+        nav .nav-links { display: flex; gap: 24px; align-items: center; }
+        nav .nav-links a { text-decoration: none; color: var(--text-light); font-size: .9rem; font-weight: 500; }
+        nav .nav-links a:hover { color: var(--primary); }
+        .btn { display: inline-block; padding: 8px 20px; border-radius: 8px; font-weight: 600;
+                font-size: .85rem; text-decoration: none; cursor: pointer; transition: all .2s; border: none; }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(124,58,237,.3); }
+        .btn-outline { border: 1.5px solid var(--border); color: var(--text); background: transparent; }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+        .btn-lg { padding: 12px 32px; font-size: 1rem; }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center; padding: 80px 24px 60px;
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #dbeafe 100%);
+        }
+        .hero h1 { font-size: 2.8rem; font-weight: 800; max-width: 700px; margin: 0 auto 16px; line-height: 1.2; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto 32px; }
+        .hero .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .hero-badge {
+            display: inline-block; background: rgba(124,58,237,.1); color: var(--primary);
+            padding: 4px 14px; border-radius: 50px; font-size: .8rem; font-weight: 600; margin-bottom: 20px;
+        }
+
+        /* ── Dashboard Mockup ── */
+        .dashboard-section { padding: 60px 24px; }
+        .dashboard-section .section-label { text-align: center; font-size: .8rem; text-transform: uppercase;
+                letter-spacing: 2px; color: var(--text-light); margin-bottom: 40px; }
+        .dashboard {
+            max-width: 1000px; margin: 0 auto;
+            background: var(--card-bg); border-radius: var(--radius);
+            box-shadow: var(--shadow-lg); overflow: hidden;
+        }
+        .dash-header {
+            padding: 20px 24px; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+        }
+        .dash-header h2 { font-size: 1.1rem; font-weight: 700; }
+        .dash-header h2 small { font-weight: 400; color: var(--text-light); font-size: .85rem; }
+        .dash-tabs {
+            display: flex; gap: 0; border-bottom: 1px solid var(--border);
+            padding: 0 24px; background: #fafafa;
+        }
+        .dash-tabs .tab { padding: 12px 20px; font-size: .85rem; font-weight: 500;
+                color: var(--text-light); border-bottom: 2px solid transparent; cursor: default; }
+        .dash-tabs .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .dash-toolbar {
+            padding: 12px 24px; border-bottom: 1px solid var(--border);
+            display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+        }
+        .dash-toolbar input[type=search] {
+            padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px;
+            font-size: .8rem; width: 200px; background: #f8fafc;
+        }
+        .dash-toolbar .filter { padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px;
+                font-size: .78rem; background: #fff; color: var(--text-light); }
+        .dash-body { padding: 16px 24px 24px; }
+
+        /* ── Idea Cards ── */
+        .idea-card {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
+            padding: 16px 20px; margin-bottom: 12px;
+            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+            transition: box-shadow .2s;
+        }
+        .idea-card:hover { box-shadow: var(--shadow); }
+        .idea-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+        }
+        .idea-icon.destination { background: #dbeafe; color: #2563eb; }
+        .idea-icon.service { background: #fef3c7; color: #d97706; }
+        .idea-icon.course { background: #d1fae5; color: #059669; }
+        .idea-body { flex: 1; min-width: 200px; }
+        .idea-body h4 { font-size: .95rem; font-weight: 600; margin-bottom: 2px; }
+        .idea-body .meta { font-size: .78rem; color: var(--text-light); display: flex; gap: 12px; flex-wrap: wrap; }
+        .stage-badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px;
+                border-radius: 50px; font-size: .75rem; font-weight: 600; }
+        .stage-concept { background: #f1f5f9; color: #475569; }
+        .stage-researching { background: #dbeafe; color: #2563eb; }
+        .stage-validating { background: #fef3c7; color: #d97706; }
+        .stage-approved { background: #d1fae5; color: #059669; }
+        .stage-rejected { background: #fee2e2; color: #dc2626; }
+        .progress-bar {
+            width: 100px; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden;
+        }
+        .progress-bar .fill { height: 100%; background: var(--primary); border-radius: 3px; }
+        .progress-bar .fill.green { background: var(--accent-green); }
+
+        /* ── Detail Preview ── */
+        .detail-preview {
+            max-width: 1000px; margin: 32px auto 0;
+            background: var(--card-bg); border-radius: var(--radius);
+            box-shadow: var(--shadow-lg); overflow: hidden;
+        }
+        .detail-top {
+            padding: 20px 24px; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+        }
+        .detail-top h3 { font-size: 1rem; font-weight: 700; }
+        .detail-actions { display: flex; gap: 8px; }
+        .detail-actions button { padding: 4px 14px; border-radius: 6px; border: 1px solid var(--border);
+                font-size: .8rem; font-weight: 500; cursor: default; background: #fff; }
+        .detail-actions .approve { color: var(--accent-green); border-color: var(--accent-green); }
+        .detail-actions .reject { color: var(--accent-red); border-color: var(--accent-red); }
+        .detail-tabs {
+            display: flex; border-bottom: 1px solid var(--border); padding: 0 24px; background: #fafafa;
+        }
+        .detail-tabs .tab { padding: 10px 20px; font-size: .82rem; font-weight: 500;
+                color: var(--text-light); border-bottom: 2px solid transparent; cursor: default; }
+        .detail-tabs .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+        .detail-body { padding: 20px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .detail-field { margin-bottom: 12px; }
+        .detail-field label { font-size: .75rem; text-transform: uppercase; letter-spacing: .5px;
+                color: var(--text-light); font-weight: 600; }
+        .detail-field p { font-size: .88rem; margin-top: 2px; }
+
+        /* ── Stats row ── */
+        .stats-row {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px; max-width: 1000px; margin: 24px auto 0; padding: 0 24px;
+        }
+        .stat-card {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px;
+            padding: 20px; text-align: center;
+        }
+        .stat-card .num { font-size: 1.8rem; font-weight: 800; color: var(--primary); }
+        .stat-card .label { font-size: .82rem; color: var(--text-light); margin-top: 2px; }
+
+        /* ── Features ── */
+        .features { padding: 60px 24px; background: var(--card-bg); }
+        .features h2 { text-align: center; font-size: 1.8rem; margin-bottom: 8px; }
+        .features > p { text-align: center; color: var(--text-light); margin-bottom: 48px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 24px; max-width: 1000px; margin: 0 auto; }
+        .feature-card { padding: 24px; border: 1px solid var(--border); border-radius: var(--radius); }
+        .feature-card .icon { font-size: 1.5rem; margin-bottom: 12px; }
+        .feature-card h4 { font-size: 1rem; margin-bottom: 6px; }
+        .feature-card p { font-size: .85rem; color: var(--text-light); }
+
+        /* ── How It Works ── */
+        .how-it-works { padding: 60px 24px; }
+        .how-it-works h2 { text-align: center; font-size: 1.8rem; margin-bottom: 48px; }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 24px; max-width: 900px; margin: 0 auto; }
+        .step { text-align: center; }
+        .step .num { width: 44px; height: 44px; border-radius: 50%; background: var(--primary);
+                color: #fff; display: flex; align-items: center; justify-content: center;
+                margin: 0 auto 12px; font-weight: 700; font-size: 1.1rem; }
+        .step h4 { font-size: .95rem; margin-bottom: 6px; }
+        .step p { font-size: .82rem; color: var(--text-light); }
+
+        /* ── Stages Timeline ── */
+        .stages { padding: 60px 24px; background: var(--card-bg); }
+        .stages h2 { text-align: center; font-size: 1.8rem; margin-bottom: 8px; }
+        .stages > p { text-align: center; color: var(--text-light); margin-bottom: 48px; }
+        .stage-row { display: flex; justify-content: center; gap: 0; max-width: 800px;
+                margin: 0 auto; flex-wrap: wrap; }
+        .stage-item { flex: 1; min-width: 120px; text-align: center; padding: 16px; position: relative; }
+        .stage-item:not(:last-child)::after {
+            content: ''; position: absolute; top: 30px; right: -50%; width: 100%;
+            height: 2px; background: var(--border); z-index: 0;
+        }
+        .stage-item .dot { width: 20px; height: 20px; border-radius: 50%; background: var(--border);
+                margin: 0 auto 8px; position: relative; z-index: 1; }
+        .stage-item .dot.active { background: var(--primary); box-shadow: 0 0 0 4px rgba(124,58,237,.15); }
+        .stage-item .dot.green { background: var(--accent-green); }
+        .stage-item .dot.red { background: var(--accent-red); }
+        .stage-item .s-label { font-size: .8rem; font-weight: 500; }
+        .stage-item .s-desc { font-size: .72rem; color: var(--text-light); }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center; padding: 40px 24px;
+            font-size: .85rem; color: var(--text-light);
+            border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--primary); text-decoration: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            nav { padding: 12px 20px; flex-direction: column; gap: 12px; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero { padding: 48px 20px 40px; }
+            .dash-header { flex-direction: column; align-items: stretch; }
+            .dash-toolbar input[type=search] { width: 100%; }
+            .detail-body { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .stage-row { flex-direction: column; align-items: center; }
+            .stage-item:not(:last-child)::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── Nav ─── -->
+<nav>
+    <div class="logo">Kahf<span>CRM</span></div>
+    <div class="nav-links">
+        <a href="#">Features</a>
+        <a href="#">How It Works</a>
+        <a href="#">Docs</a>
+        <a href="#" class="btn btn-primary">Get Early Access</a>
+    </div>
+</nav>
+
+<!-- ─── Hero ─── -->
+<section class="hero">
+    <span class="hero-badge">🚀 New Feature</span>
+    <h1>Validate Product Ideas<br>Before You <span>Build Anything</span></h1>
+    <p>Stop guessing. A structured workspace to capture, research, and validate new study destinations, courses, and services — before committing resources.</p>
+    <div class="btn-group">
+        <a href="#" class="btn btn-primary btn-lg">Try Demo →</a>
+        <a href="#" class="btn btn-outline btn-lg">View on GitHub</a>
+    </div>
+</section>
+
+<!-- ─── Stats ─── -->
+<div class="stats-row">
+    <div class="stat-card"><div class="num">47</div><div class="label">Matched Leads</div></div>
+    <div class="stat-card"><div class="num">12</div><div class="label">Active Ideas</div></div>
+    <div class="stat-card"><div class="num">5</div><div class="label">Validated Segments</div></div>
+    <div class="stat-card"><div class="num">3</div><div class="label">Approved</div></div>
+</div>
+
+<!-- ─── Dashboard ─── -->
+<section class="dashboard-section">
+    <div class="section-label">⬤ LIVE DEMO</div>
+    <div class="dashboard">
+        <div class="dash-header">
+            <h2>Idea Validation <small>· 12 ideas</small></h2>
+            <a href="#" class="btn btn-primary" style="font-size:.82rem;padding:6px 16px;">+ New Idea</a>
+        </div>
+        <div class="dash-tabs">
+            <span class="tab active">All Ideas</span>
+            <span class="tab">My Ideas</span>
+            <span class="tab">Archived</span>
+        </div>
+        <div class="dash-toolbar">
+            <input type="search" placeholder="Search ideas..." value="Canada">
+            <span class="filter">Stage: All ▼</span>
+            <span class="filter">Category: All ▼</span>
+        </div>
+        <div class="dash-body">
+            <!-- Card 1 -->
+            <div class="idea-card">
+                <div class="idea-icon destination">🌍</div>
+                <div class="idea-body">
+                    <h4>Study in Canada — AI/ML Programs</h4>
+                    <div class="meta">
+                        <span class="stage-badge stage-validating">🔬 Validating</span>
+                        <span>Assigned: Farzana</span>
+                        <span>Updated: 2 days ago</span>
+                    </div>
+                </div>
+                <div style="text-align:right;font-size:.78rem;color:var(--text-light);">
+                    <div style="margin-bottom:4px;">3/5 validated</div>
+                    <div class="progress-bar"><div class="fill" style="width:60%;"></div></div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="idea-card">
+                <div class="idea-icon course">📚</div>
+                <div class="idea-body">
+                    <h4>IELTS Bootcamp — Online Cohort</h4>
+                    <div class="meta">
+                        <span class="stage-badge stage-researching">📝 Researching</span>
+                        <span>Assigned: N/A</span>
+                        <span>Updated: 5 days ago</span>
+                    </div>
+                </div>
+                <div style="text-align:right;font-size:.78rem;color:var(--text-light);">
+                    <div style="margin-bottom:4px;">2 defined</div>
+                    <div class="progress-bar"><div class="fill" style="width:40%;background:#3b82f6;"></div></div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="idea-card">
+                <div class="idea-icon service">🎯</div>
+                <div class="idea-body">
+                    <h4>Scholarship Matching Service</h4>
+                    <div class="meta">
+                        <span class="stage-badge stage-concept">💡 Concept</span>
+                        <span>Assigned: N/A</span>
+                        <span>Updated: 1 week ago</span>
+                    </div>
+                </div>
+                <div style="text-align:right;font-size:.78rem;color:var(--text-light);">
+                    <div style="margin-bottom:4px;">0/2 validated</div>
+                    <div class="progress-bar"><div class="fill" style="width:0%;"></div></div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="idea-card">
+                <div class="idea-icon destination">🇦🇺</div>
+                <div class="idea-body">
+                    <h4>Australia Regional Visa Pathway</h4>
+                    <div class="meta">
+                        <span class="stage-badge stage-approved">✅ Approved</span>
+                        <span>Assigned: Ashiqur</span>
+                        <span>Updated: 3 days ago</span>
+                    </div>
+                </div>
+                <div style="text-align:right;font-size:.78rem;color:var(--text-light);">
+                    <div style="margin-bottom:4px;">4/4 validated</div>
+                    <div class="progress-bar"><div class="fill green" style="width:100%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Preview -->
+    <div class="detail-preview">
+        <div class="detail-top">
+            <h3>Study in Canada — AI/ML Programs</h3>
+            <div class="detail-actions">
+                <button class="approve">✓ Approve</button>
+                <button class="reject">✗ Reject</button>
+                <button>Edit</button>
+            </div>
+        </div>
+        <div class="detail-tabs">
+            <span class="tab active">Overview</span>
+            <span class="tab">Target Users</span>
+            <span class="tab">Research</span>
+            <span class="tab">Activity Log</span>
+        </div>
+        <div class="detail-body">
+            <div>
+                <div class="detail-field">
+                    <label>Problem Statement</label>
+                    <p>Bangladeshi CS grads lack clear pathway to Canadian AI/ML programs. Existing consultancies focus on coursework-based programs only.</p>
+                </div>
+                <div class="detail-field">
+                    <label>Proposed Solution</label>
+                    <p>Partnership with 3 Canadian colleges offering AI/ML postgraduate diplomas with co-op.</p>
+                </div>
+            </div>
+            <div>
+                <div class="detail-field">
+                    <label>Key Assumptions</label>
+                    <p>• Students have &gt;7.0 IELTS<br>• Budget range: 20–30 lakh BDT<br>• Demand for AI/ML is growing in BD</p>
+                </div>
+                <div class="detail-field">
+                    <label>Validation Summary</label>
+                    <p>Segments: 5 total · 3 validated · 1 rejected · 1 pending<br>Matched Leads: 47</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Features ─── -->
+<section class="features">
+    <h2>Why a Structured Validation Process?</h2>
+    <p>South Asian consultancies evaluate dozens of new products every year. Most decisions are gut-feel. Change that.</p>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="icon">📥</div>
+            <h4>Capture Instantly</h4>
+            <p>Log product ideas before they're forgotten — new destinations, courses, services, or packages.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🎯</div>
+            <h4>Define Target Users</h4>
+            <p>Add segments with demographics, pain points, and estimated market size. Link real leads as evidence.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🔬</div>
+            <h4>Research &amp; Validate</h4>
+            <p>Assign team members to research segments. Add findings, attach files, and track validation status.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📊</div>
+            <h4>Data-Driven Decisions</h4>
+            <p>See matched lead counts, validation progress, and team input — all in one place before green-lighting.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📎</div>
+            <h4>Link Real Leads</h4>
+            <p>Connect leads from your CRM as validation samples. Instantly see how many matches exist per segment.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🔄</div>
+            <h4>Track Progress</h4>
+            <p>Move ideas through stages: Concept → Researching → Validating → Approved/Rejected. Full activity log.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── How It Works ─── -->
+<section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="num">1</div>
+            <h4>Create an Idea</h4>
+            <p>Title, category, problem statement, and key assumptions. Auto-saves as draft.</p>
+        </div>
+        <div class="step">
+            <div class="num">2</div>
+            <h4>Define Segments</h4>
+            <p>Add target user profiles with demographics, budgets, and pain points.</p>
+        </div>
+        <div class="step">
+            <div class="num">3</div>
+            <h4>Research &amp; Validate</h4>
+            <p>Assign researchers, add findings, link leads, and validate assumptions.</p>
+        </div>
+        <div class="step">
+            <div class="num">4</div>
+            <h4>Decide</h4>
+            <p>Approve with one click or reject with reason. Create campaigns from approved ideas.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Stages ─── -->
+<section class="stages">
+    <h2>Idea Lifecycle</h2>
+    <p>Every idea moves through a clear validation pipeline</p>
+    <div class="stage-row">
+        <div class="stage-item">
+            <div class="dot active"></div>
+            <div class="s-label">💡 Concept</div>
+            <div class="s-desc">New idea captured</div>
+        </div>
+        <div class="stage-item">
+            <div class="dot" style="background:var(--accent-blue);"></div>
+            <div class="s-label">📝 Researching</div>
+            <div class="s-desc">Gathering data</div>
+        </div>
+        <div class="stage-item">
+            <div class="dot" style="background:var(--accent);"></div>
+            <div class="s-label">🔬 Validating</div>
+            <div class="s-desc">Testing assumptions</div>
+        </div>
+        <div class="stage-item">
+            <div class="dot green"></div>
+            <div class="s-label">✅ Approved</div>
+            <div class="s-desc">Ready to build</div>
+        </div>
+        <div class="stage-item">
+            <div class="dot" style="background:var(--accent-red);"></div>
+            <div class="s-label">❌ Rejected</div>
+            <div class="s-desc">Killed with reason</div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+    <p>Built for <a href="#">KahfCRM</a> · Idea Validation Module · © 2026</p>
+    <p style="margin-top:4px;font-size:.78rem;">Made with ☕ by the Kahf Team</p>
+</footer>
+
+</body>
+</html>
