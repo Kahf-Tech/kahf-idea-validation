@@ -3,38 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KahfCRM — Idea Validation for Education Consultancies</title>
+    <title>KahfCRM — All-in-One CRM for Education Consultancies</title>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
-            --p: #7c3aed;
-            --p-light: #8b5cf6;
-            --p-dark: #5b21b6;
-            --p-bg: #f5f3ff;
-            --s-bg: #f8fafc;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --text-light: #94a3b8;
-            --radius: 12px;
-            --radius-lg: 16px;
-            --shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-            --shadow-md: 0 4px 6px -1px rgba(0,0,0,.07), 0 2px 4px -2px rgba(0,0,0,.05);
+            --p: #7c3aed; --p-light: #8b5cf6; --p-dark: #5b21b6; --p-bg: #f5f3ff;
+            --s-bg: #f8fafc; --card: #fff; --border: #e2e8f0;
+            --text: #1e293b; --text-muted: #64748b; --text-light: #94a3b8;
+            --radius: 12px; --radius-lg: 16px; --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --shadow: 0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,.07),0 2px 4px -2px rgba(0,0,0,.05);
             --shadow-lg: 0 10px 25px rgba(0,0,0,.08);
-            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-
         body { font-family: var(--font); background: var(--s-bg); color: var(--text); line-height: 1.6; }
 
-        /* ─── Nav ─── */
-        nav {
-            position: sticky; top: 0; z-index: 50;
-            background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border);
-            padding: 0 24px;
-        }
+        nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 24px; }
         nav .inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; height: 64px; }
         nav .logo { font-weight: 700; font-size: 1.2rem; color: var(--p); display: flex; align-items: center; gap: 10px; }
         nav .logo .mark { width: 32px; height: 32px; background: var(--p); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: .9rem; }
@@ -58,54 +41,27 @@
         .mobile-menu a:hover { color: var(--p); }
         .mobile-menu .btn { margin-top: 8px; width: 100%; }
 
-        /* ─── Hero ─── */
-        .hero {
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #4338ca 100%);
-            overflow: hidden; position: relative;
-        }
-        .hero::before {
-            content: ''; position: absolute; inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: .5;
-        }
+        .hero { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #4338ca 100%); overflow: hidden; position: relative; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); opacity: .5; }
         .hero .inner { max-width: 1100px; margin: 0 auto; padding: 80px 24px 100px; position: relative; z-index: 1; }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(255,255,255,.12); backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,.2);
-            padding: 6px 16px; border-radius: 50px; font-size: .82rem; font-weight: 500; color: #fff; margin-bottom: 24px;
-        }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,.2); padding: 6px 16px; border-radius: 50px; font-size: .82rem; font-weight: 500; color: #fff; margin-bottom: 24px; }
         .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #f87171; animation: pulse 2s infinite; }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
-        .hero h1 { font-size: 3rem; font-weight: 800; color: #fff; line-height: 1.15; max-width: 720px; margin-bottom: 16px; }
-        .hero h1 .highlight { background: linear-gradient(135deg, #fde047, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero p { font-size: 1.1rem; color: rgba(255,255,255,.78); max-width: 580px; margin-bottom: 32px; line-height: 1.7; }
+        .hero h1 { font-size: 3rem; font-weight: 800; color: #fff; line-height: 1.15; max-width: 780px; margin-bottom: 16px; }
+        .hero h1 .hl { background: linear-gradient(135deg, #fde047, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero p { font-size: 1.1rem; color: rgba(255,255,255,.78); max-width: 600px; margin-bottom: 32px; line-height: 1.7; }
         .hero .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+        .hero .btns .btn-o { border-color: rgba(255,255,255,.3); color: #fff; }
+        .hero .btns .btn-o:hover { border-color: #fff; background: rgba(255,255,255,.1); }
         .hero .trust-bar { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 36px; }
         .hero .trust-bar span { display: flex; align-items: center; gap: 6px; font-size: .82rem; color: rgba(255,255,255,.65); }
         .hero .trust-bar svg { width: 16px; height: 16px; flex-shrink: 0; }
-        .hero-mockup { margin-top: 48px; }
-        .hero-mockup .frame { background: #fff; border-radius: var(--radius-lg); box-shadow: 0 20px 60px rgba(0,0,0,.2); overflow: hidden; max-width: 900px; margin: 0 auto; }
-        .frame-bar { background: #1e293b; padding: 12px 16px; display: flex; align-items: center; gap: 8px; }
-        .frame-bar .dots { display: flex; gap: 6px; }
-        .frame-bar .dots span { width: 10px; height: 10px; border-radius: 50%; }
-        .frame-bar .dots span:nth-child(1) { background: #ef4444; }
-        .frame-bar .dots span:nth-child(2) { background: #eab308; }
-        .frame-bar .dots span:nth-child(3) { background: #22c55e; }
-        .frame-bar .url { flex: 1; background: rgba(255,255,255,.08); border-radius: 4px; padding: 4px 10px; font-size: .78rem; color: rgba(255,255,255,.5); text-align: center; }
-        .frame-body { background: linear-gradient(135deg, #f5f3ff, #ede9fe); padding: 32px; min-height: 200px; display: flex; align-items: center; justify-content: center; }
-        .frame-body .placeholder { text-align: center; }
-        .frame-body .placeholder .icon { width: 56px; height: 56px; background: var(--p); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 1.5rem; color: #fff; }
-        .frame-body .placeholder h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 4px; }
-        .frame-body .placeholder p { font-size: .85rem; color: var(--text-muted); }
 
-        /* ─── Sections common ─── */
         section { padding: 80px 24px; }
         section .inner { max-width: 1100px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
-        .section-sub { text-align: center; font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 48px; }
+        .sec-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+        .sec-sub { text-align: center; font-size: 1.05rem; color: var(--text-muted); max-width: 620px; margin: 0 auto 48px; }
 
-        /* ─── Problem/Solution ─── */
         .prob-sol { background: var(--card); }
         .prob-sol .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
         .prob-sol .box { border-radius: var(--radius-lg); padding: 32px; }
@@ -113,116 +69,86 @@
         .prob-sol .box ul { list-style: none; }
         .prob-sol .box li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: .95rem; color: var(--text); }
         .prob-sol .box li svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
-        .prob-red { background: #fef2f2; border: 1px solid #fecaca; }
-        .prob-red h3 { color: #dc2626; }
-        .prob-red svg { color: #ef4444; }
-        .prob-green { background: #f0fdf4; border: 1px solid #bbf7d0; }
-        .prob-green h3 { color: #16a34a; }
-        .prob-green svg { color: #22c55e; }
+        .pr { background: #fef2f2; border: 1px solid #fecaca; }
+        .pr h3 { color: #dc2626; } .pr svg { color: #ef4444; }
+        .ps { background: #f0fdf4; border: 1px solid #bbf7d0; }
+        .ps h3 { color: #16a34a; } .ps svg { color: #22c55e; }
 
-        /* ─── Stats ─── */
         .stats { padding: 48px 24px; }
         .stats .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 800px; margin: 0 auto; }
         .stats .item { text-align: center; }
         .stats .item .num { font-size: 2.5rem; font-weight: 800; color: var(--p); }
         .stats .item .label { font-size: .9rem; color: var(--text-muted); margin-top: 2px; }
 
-        /* ─── Features ─── */
-        .features { background: var(--s-bg); }
-        .features .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .feature-card {
-            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg);
-            padding: 28px; transition: box-shadow .2s, transform .2s;
-        }
-        .feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-        .feature-card .icon {
-            width: 48px; height: 48px; border-radius: var(--radius);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem; margin-bottom: 16px;
-        }
-        .feature-card h4 { font-size: 1rem; margin-bottom: 6px; }
-        .feature-card p { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
-        .icon-blue { background: #dbeafe; color: #2563eb; }
-        .icon-green { background: #d1fae5; color: #059669; }
-        .icon-purple { background: #ede9fe; color: #7c3aed; }
-        .icon-orange { background: #fed7aa; color: #d97706; }
-        .icon-red { background: #fee2e2; color: #dc2626; }
-        .icon-indigo { background: #e0e7ff; color: #4f46e5; }
+        .modules { background: var(--s-bg); }
+        .modules .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .md-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; transition: box-shadow .2s, transform .2s; }
+        .md-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .md-card .ico { width: 48px; height: 48px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px; }
+        .md-card h4 { font-size: 1rem; margin-bottom: 6px; }
+        .md-card p { font-size: .85rem; color: var(--text-muted); line-height: 1.6; }
+        .md-card .tag { display: inline-block; padding: 2px 10px; border-radius: 50px; font-size: .7rem; font-weight: 600; margin-top: 10px; background: var(--p-bg); color: var(--p); }
+        .i-b { background: #dbeafe; color: #2563eb; }
+        .i-g { background: #d1fae5; color: #059669; }
+        .i-p { background: #ede9fe; color: #7c3aed; }
+        .i-o { background: #fed7aa; color: #d97706; }
+        .i-r { background: #fee2e2; color: #dc2626; }
+        .i-i { background: #e0e7ff; color: #4f46e5; }
 
-        .features-more { margin-top: 32px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 36px; }
-        .features-more h3 { text-align: center; font-size: 1.2rem; margin-bottom: 24px; }
-        .features-more .grid { grid-template-columns: repeat(2, 1fr); }
-        .features-more .item { display: flex; align-items: flex-start; gap: 12px; }
-        .features-more .item svg { width: 20px; height: 20px; color: #22c55e; flex-shrink: 0; margin-top: 2px; }
-        .features-more .item h4 { font-size: .92rem; margin-bottom: 2px; }
-        .features-more .item p { font-size: .82rem; color: var(--text-muted); }
+        .extras { background: var(--card); }
+        .extras .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .ex-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-align: center; transition: box-shadow .2s; }
+        .ex-card:hover { box-shadow: var(--shadow); }
+        .ex-card .ico { font-size: 1.5rem; margin-bottom: 8px; }
+        .ex-card h4 { font-size: .9rem; margin-bottom: 4px; }
+        .ex-card p { font-size: .78rem; color: var(--text-muted); }
 
-        /* ─── Dashboard Preview ─── */
-        .dashboard-preview { background: var(--card); }
-        .dashboard-preview .tab-btns { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
-        .dashboard-preview .tab-btns button {
-            padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: .85rem;
-            border: 1px solid var(--border); background: #fff; color: var(--text-muted); cursor: default; transition: all .2s;
-        }
-        .dashboard-preview .tab-btns button.active { background: var(--p); color: #fff; border-color: var(--p); }
-        .dash-frame { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
-        .dash-head { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-        .dash-head h3 { font-size: 1rem; }
-        .dash-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); padding: 0 24px; background: #fafafa; overflow-x: auto; white-space: nowrap; }
-        .dash-tabs .t { padding: 10px 18px; font-size: .82rem; font-weight: 500; color: var(--text-muted); border-bottom: 2px solid transparent; cursor: default; }
-        .dash-tabs .t.active { color: var(--p); border-bottom-color: var(--p); }
-        .dash-toolbar { padding: 12px 24px; border-bottom: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-        .dash-toolbar input { padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: .8rem; width: 180px; background: #f8fafc; }
-        .dash-toolbar .chip { padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: .76rem; background: #fff; color: var(--text-muted); }
-        .dash-body { padding: 16px 24px 24px; }
+        .demos { background: var(--s-bg); }
+        .demo-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+        .demo-tabs button { padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: .85rem; border: 1px solid var(--border); background: #fff; color: var(--text-muted); cursor: default; transition: all .2s; }
+        .demo-tabs button.active { background: var(--p); color: #fff; border-color: var(--p); }
+        .d-frame { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+        .d-head { padding: 18px 22px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .d-head h3 { font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+        .d-head h3 small { font-weight: 400; color: var(--text-muted); font-size: .82rem; }
+        .d-tabs { display: flex; border-bottom: 1px solid var(--border); padding: 0 22px; background: #fafafa; overflow-x: auto; white-space: nowrap; }
+        .d-tabs .t { padding: 10px 18px; font-size: .8rem; font-weight: 500; color: var(--text-muted); border-bottom: 2px solid transparent; cursor: default; }
+        .d-tabs .t.active { color: var(--p); border-bottom-color: var(--p); }
+        .d-tbar { padding: 12px 22px; border-bottom: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .d-tbar input { padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: .8rem; width: 160px; background: #f8fafc; }
+        .d-tbar .chip { padding: 4px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: .74rem; background: #fff; color: var(--text-muted); cursor: default; }
+        .d-body { padding: 16px 22px 22px; }
 
-        .idea-row {
-            display: flex; align-items: center; gap: 14px; padding: 14px 18px;
-            border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px;
-            transition: box-shadow .2s; flex-wrap: wrap;
-        }
-        .idea-row:hover { box-shadow: var(--shadow); }
-        .idea-row .ico { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-        .idea-row .info { flex: 1; min-width: 160px; }
-        .idea-row .info h4 { font-size: .9rem; }
-        .idea-row .info .meta { font-size: .76rem; color: var(--text-muted); display: flex; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
-        .stage { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 50px; font-size: .73rem; font-weight: 600; }
-        .st-concept { background: #f1f5f9; color: #475569; }
-        .st-research { background: #dbeafe; color: #2563eb; }
-        .st-valid { background: #fef3c7; color: #d97706; }
-        .st-approved { background: #d1fae5; color: #059669; }
-        .st-rejected { background: #fee2e2; color: #dc2626; }
-        .idea-row .progress { text-align: right; }
-        .idea-row .progress .pbar { width: 90px; height: 5px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
-        .idea-row .progress .pbar .fill { height: 100%; border-radius: 3px; }
+        .d-table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+        .d-table th { text-align: left; padding: 10px 8px; border-bottom: 2px solid var(--border); font-size: .75rem; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted); font-weight: 600; }
+        .d-table td { padding: 12px 8px; border-bottom: 1px solid var(--border); }
+        .d-table tr:last-child td { border: none; }
+        .d-table .badge { padding: 2px 10px; border-radius: 50px; font-size: .72rem; font-weight: 600; }
+        .bd-1 { background: #dbeafe; color: #2563eb; }
+        .bd-2 { background: #fef3c7; color: #d97706; }
+        .bd-3 { background: #d1fae5; color: #059669; }
+        .bd-4 { background: #fee2e2; color: #dc2626; }
+        .d-table .name { font-weight: 600; }
 
-        /* ─── Pricing ─── */
+        .d-kanban { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .d-col { background: #f1f5f9; border-radius: var(--radius); padding: 12px; }
+        .d-col h4 { font-size: .82rem; margin-bottom: 8px; color: var(--text-muted); display: flex; align-items: center; justify-content: space-between; }
+        .d-col h4 span { background: var(--text-light); color: #fff; font-size: .7rem; padding: 1px 8px; border-radius: 50px; }
+        .d-card { background: #fff; border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; box-shadow: 0 1px 2px rgba(0,0,0,.05); font-size: .82rem; }
+        .d-card h5 { font-size: .85rem; margin-bottom: 2px; }
+        .d-card p { font-size: .74rem; color: var(--text-muted); }
+
         .pricing { background: var(--s-bg); }
-        .pricing .offer {
-            background: linear-gradient(135deg, #fef3c7, #fffbeb);
-            border: 2px solid #fde68a; border-radius: var(--radius-lg);
-            padding: 20px; text-align: center; margin-bottom: 40px;
-        }
-        .pricing .offer svg { width: 20px; height: 20px; color: #d97706; vertical-align: middle; margin-right: 6px; }
+        .pricing .offer { background: linear-gradient(135deg, #fef3c7, #fffbeb); border: 2px solid #fde68a; border-radius: var(--radius-lg); padding: 20px; text-align: center; margin-bottom: 40px; }
         .pricing .offer strong { color: #92400e; }
         .pricing .offer p { color: #b45309; font-size: .9rem; margin-top: 2px; }
         .pricing .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 960px; margin: 0 auto; align-items: start; }
-        .plan {
-            background: var(--card); border: 2px solid var(--border); border-radius: var(--radius-lg);
-            padding: 32px; transition: border-color .2s; position: relative;
-        }
+        .plan { background: var(--card); border: 2px solid var(--border); border-radius: var(--radius-lg); padding: 32px; transition: border-color .2s; position: relative; }
         .plan:hover { border-color: var(--p-light); }
-        .plan.featured {
-            background: var(--p); border-color: var(--p);
-            transform: scale(1.04);
-        }
-        .plan.featured .badge {
-            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-            background: #fbbf24; color: #78350f; font-size: .78rem; font-weight: 700;
-            padding: 4px 16px; border-radius: 50px;
-        }
+        .plan.featured { background: var(--p); border-color: var(--p); transform: scale(1.04); }
+        .plan.featured .bage { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #fbbf24; color: #78350f; font-size: .78rem; font-weight: 700; padding: 4px 16px; border-radius: 50px; }
         .plan h3 { font-size: 1.2rem; margin-bottom: 2px; }
-        .plan p.sub { font-size: .85rem; color: var(--text-muted); margin-bottom: 16px; }
+        .plan .sub { font-size: .85rem; color: var(--text-muted); margin-bottom: 16px; }
         .plan .price { font-size: 2.2rem; font-weight: 800; }
         .plan .price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
         .plan .save { font-size: .8rem; color: #16a34a; font-weight: 600; margin-bottom: 20px; }
@@ -239,50 +165,29 @@
         .plan.featured .btn:hover { background: #f8fafc; }
         .plan .btn.btn-o { width: 100%; }
 
-        /* ─── FAQ ─── */
         .faq { background: var(--card); }
         .faq .list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-        .faq details {
-            background: var(--s-bg); border: 1px solid var(--border); border-radius: var(--radius);
-            overflow: hidden; transition: box-shadow .2s;
-        }
+        .faq details { background: var(--s-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: box-shadow .2s; }
         .faq details:hover { box-shadow: var(--shadow); }
-        .faq summary {
-            padding: 18px 22px; font-weight: 600; font-size: .95rem;
-            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-            list-style: none;
-        }
+        .faq summary { padding: 18px 22px; font-weight: 600; font-size: .95rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; }
         .faq summary::-webkit-details-marker { display: none; }
         .faq summary svg { width: 18px; height: 18px; color: var(--text-light); transition: transform .2s; flex-shrink: 0; }
         .faq details[open] summary svg { transform: rotate(180deg); }
         .faq .a { padding: 0 22px 18px; font-size: .88rem; color: var(--text-muted); line-height: 1.7; }
 
-        /* ─── CTA ─── */
-        .cta {
-            background: linear-gradient(135deg, #7c3aed, #6d28d9, #4338ca);
-        }
+        .cta { background: linear-gradient(135deg, #7c3aed, #6d28d9, #4338ca); }
         .cta .inner { text-align: center; }
         .cta h2 { color: #fff; font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
         .cta p { color: rgba(255,255,255,.75); font-size: 1.05rem; max-width: 520px; margin: 0 auto 32px; }
-        .cta-form {
-            max-width: 520px; margin: 0 auto;
-            background: rgba(255,255,255,.1); backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,.15); border-radius: var(--radius-lg);
-            padding: 32px;
-        }
-        .cta-form input, .cta-form select, .cta-form textarea {
-            width: 100%; padding: 12px 14px; border: 1px solid rgba(255,255,255,.2);
-            border-radius: 8px; background: rgba(255,255,255,.9); font-size: .9rem;
-            outline: none; transition: border-color .2s;
-        }
-        .cta-form input:focus, .cta-form select:focus, .cta-form textarea:focus { border-color: #fff; }
-        .cta-form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        .cta-form { max-width: 520px; margin: 0 auto; background: rgba(255,255,255,.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.15); border-radius: var(--radius-lg); padding: 32px; }
+        .cta-form input,.cta-form select,.cta-form textarea { width: 100%; padding: 12px 14px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; background: rgba(255,255,255,.9); font-size: .9rem; outline: none; transition: border-color .2s; }
+        .cta-form input:focus,.cta-form select:focus,.cta-form textarea:focus { border-color: #fff; }
+        .cta-form .r2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
         .cta-form .full { margin-bottom: 12px; }
         .cta-form .btn { width: 100%; padding: 14px; font-size: 1rem; margin-top: 8px; background: #fff; color: var(--p); }
         .cta-form .btn:hover { background: #f1f5f9; }
         .cta-form .foot { font-size: .78rem; color: rgba(255,255,255,.5); margin-top: 12px; text-align: center; }
 
-        /* ─── Footer ─── */
         footer { background: #0f172a; color: #94a3b8; padding: 48px 24px 32px; }
         footer .inner { max-width: 1100px; margin: 0 auto; }
         footer .grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px; }
@@ -295,18 +200,17 @@
         footer .brand .mark { width: 28px; height: 28px; background: var(--p); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: .8rem; }
         footer .brand span { color: #fff; font-weight: 700; }
         footer .bottom { border-top: 1px solid #1e293b; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: .82rem; }
-        footer .disclaimer { margin-top: 16px; padding: 12px; background: #1e293b; border-radius: 8px; font-size: .75rem; text-align: center; }
+        footer .disc { margin-top: 16px; padding: 12px; background: #1e293b; border-radius: 8px; font-size: .75rem; text-align: center; }
 
-        /* ─── Responsive ─── */
         @media (max-width: 900px) {
-            .features .grid { grid-template-columns: repeat(2, 1fr); }
-            .features-more .grid { grid-template-columns: repeat(2, 1fr); }
+            .modules .grid { grid-template-columns: repeat(2, 1fr); }
+            .extras .grid { grid-template-columns: repeat(2, 1fr); }
             .pricing .grid { grid-template-columns: 1fr; max-width: 400px; }
             .plan.featured { transform: none; }
             footer .grid { grid-template-columns: repeat(2, 1fr); }
             .prob-sol .grid { grid-template-columns: 1fr; }
+            .d-kanban { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 768px) {
             nav .links { display: none; }
             .hamburger { display: flex; }
@@ -317,33 +221,24 @@
             .hero .btns { flex-direction: column; align-items: stretch; }
             .hero .btns .btn { text-align: center; }
             .hero .trust-bar { justify-content: center; }
-            .frame-body { padding: 20px; min-height: 140px; }
             section { padding: 48px 20px; }
-            .section-title { font-size: 1.5rem; }
+            .sec-title { font-size: 1.5rem; }
             .stats .grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
             .stats .item .num { font-size: 1.8rem; }
-            .features .grid { grid-template-columns: 1fr; }
-            .features-more .grid { grid-template-columns: 1fr; }
-            .dash-head { flex-direction: column; align-items: stretch; gap: 10px; }
-            .dash-tabs { padding: 0 16px; }
-            .dash-toolbar input { width: 100%; }
-            .dash-body { padding: 12px 16px 16px; }
-            .idea-row { padding: 12px 14px; }
-            .idea-row .info { min-width: 0; }
+            .modules .grid { grid-template-columns: 1fr; }
+            .extras .grid { grid-template-columns: 1fr; }
             .pricing .grid { max-width: 100%; }
             .plan { padding: 24px; }
-            .cta-form .row2 { grid-template-columns: 1fr; }
+            .cta-form .r2 { grid-template-columns: 1fr; }
             footer .grid { grid-template-columns: 1fr; text-align: center; }
             footer .brand { justify-content: center; }
             footer .bottom { flex-direction: column; text-align: center; }
+            .d-kanban { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.6rem; }
             .stats .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .idea-row { flex-direction: column; align-items: stretch; }
-            .idea-row .progress { text-align: left; display: flex; align-items: center; gap: 10px; }
-            .dashboard-preview .tab-btns button { font-size: .78rem; padding: 8px 14px; }
+            .d-tbar input { width: 100%; }
         }
     </style>
 </head>
@@ -354,17 +249,17 @@
     <div class="inner">
         <div class="logo"><div class="mark">K</div> Kahf<span>CRM</span></div>
         <div class="links">
-            <a href="#features">Features</a>
+            <a href="#modules">Modules</a>
+            <a href="#demos">Demo</a>
             <a href="#pricing">Pricing</a>
             <a href="#faq">FAQ</a>
             <a href="#cta" class="btn btn-p btn-sm">Get Early Access</a>
         </div>
-        <button class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="hamburger" onclick="document.getElementById('mm').classList.toggle('open')"><span></span><span></span><span></span></button>
     </div>
     <div class="mobile-menu" id="mm">
-        <a href="#features">Features</a>
+        <a href="#modules">Modules</a>
+        <a href="#demos">Demo</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
         <a href="#cta" class="btn btn-p">Get Early Access</a>
@@ -374,32 +269,17 @@
 <!-- ─── Hero ─── -->
 <section class="hero">
     <div class="inner">
-        <div class="hero-badge"><span class="dot"></span> New Feature — Now in Beta</div>
-        <h1>Validate Product Ideas<br>Before You <span class="highlight">Build Anything</span></h1>
-        <p>A structured workspace for education consultancies to capture, research, and validate new study destinations, courses, and services — before committing time and money.</p>
+        <div class="hero-badge"><span class="dot"></span> Now in Beta — Built for South Asian Consultancies</div>
+        <h1>All-in-One CRM for<br>Education <span class="hl">Consultancy Firms</span></h1>
+        <p>Manage leads, track applications, run marketing campaigns, and validate product ideas — all from one platform. Designed for the way South Asian consultancies work.</p>
         <div class="btns">
-            <a href="#demo" class="btn btn-w btn-lg">See the Dashboard →</a>
-            <a href="#pricing" class="btn btn-o btn-lg" style="border-color:rgba(255,255,255,.3);color:#fff;">View Pricing</a>
+            <a href="#demos" class="btn btn-w btn-lg">See Live Demo →</a>
+            <a href="#pricing" class="btn btn-o btn-lg">View Pricing</a>
         </div>
         <div class="trust-bar">
             <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> No credit card required</span>
-            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Setup in 24 hours</span>
-            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Built for South Asian consultancies</span>
-        </div>
-        <div class="hero-mockup">
-            <div class="frame">
-                <div class="frame-bar">
-                    <div class="dots"><span></span><span></span><span></span></div>
-                    <div class="url">kahfcrm.com/app/idea-validation</div>
-                </div>
-                <div class="frame-body">
-                    <div class="placeholder">
-                        <div class="icon">💡</div>
-                        <h3>Idea Validation Dashboard</h3>
-                        <p>Full-screen preview — see live demo below ↓</p>
-                    </div>
-                </div>
-            </div>
+            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Multi-tenant SaaS</span>
+            <span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> bKash & Nagad supported</span>
         </div>
     </div>
 </section>
@@ -407,142 +287,196 @@
 <!-- ─── Problem/Solution ─── -->
 <section class="prob-sol">
     <div class="inner">
-        <h2 class="section-title">Why Structured Validation?</h2>
-        <p class="section-sub">South Asian consultancies evaluate dozens of new products every year. Most decisions are gut-feel. Change that.</p>
+        <h2 class="sec-title">Built for the Way Consultancies Work</h2>
+        <p class="sec-sub">From first inquiry to visa — South Asian consultancies face unique challenges that generic CRMs don't solve.</p>
         <div class="grid">
-            <div class="box prob-red">
+            <div class="box pr">
                 <h3><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg> The Challenge</h3>
                 <ul>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> No structured way to evaluate new destinations &amp; courses</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> Gut-feel decisions waste resources on bad ideas</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> Team collaboration scattered across spreadsheets &amp; chat</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> Miss good opportunities because nobody tracked them</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> Leads scattered across WhatsApp, email, and spreadsheets</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> No way to track applications across multiple universities</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> Manual follow-ups & missed deadlines</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg> No data on what's working — which sources, agents, or products</li>
                 </ul>
             </div>
-            <div class="box prob-green">
-                <h3><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Our Solution</h3>
+            <div class="box ps">
+                <h3><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> KahfCRM Solution</h3>
                 <ul>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Capture ideas instantly with structured forms</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Define target segments with demographics &amp; pain points</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Assign research tasks &amp; track validation progress</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Approve or kill ideas with confidence — data-backed</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Centralized lead management with multi-channel intake</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> End-to-end application tracking — apply, accept, visa</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Automated reminders, tasks, and follow-up workflows</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Real-time dashboards & conversion analytics</li>
                 </ul>
             </div>
         </div>
         <div class="stats">
             <div class="grid">
-                <div class="item"><div class="num">20,000+</div><div class="label">Consultancy firms in SA</div></div>
-                <div class="item"><div class="num">₹50Cr+</div><div class="label">Wasted on bad products yearly</div></div>
-                <div class="item"><div class="num">87%</div><div class="label">Better decisions with data</div></div>
+                <div class="item"><div class="num">2,500+</div><div class="label">Leads tracked monthly</div></div>
+                <div class="item"><div class="num">85%</div><div class="label">Faster follow-up times</div></div>
+                <div class="item"><div class="num">10x</div><div class="label">Team productivity boost</div></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ─── Features ─── -->
-<section class="features" id="features">
+<!-- ─── Modules ─── -->
+<section class="modules" id="modules">
     <div class="inner">
-        <h2 class="section-title">Everything You Need to Validate Ideas</h2>
-        <p class="section-sub">A complete toolkit to capture, research, and decide on new products — built into KahfCRM.</p>
+        <h2 class="sec-title">Everything Your Consultancy Needs</h2>
+        <p class="sec-sub">6 core modules designed to cover the entire student journey — from inquiry to enrollment and beyond.</p>
         <div class="grid">
-            <div class="feature-card">
-                <div class="icon icon-blue">📥</div>
-                <h4>Capture Instantly</h4>
-                <p>Log product ideas before they're forgotten. Auto-save drafts, categorize by type, and assign team members.</p>
+            <div class="md-card">
+                <div class="ico i-b">👥</div>
+                <h4>Lead Management</h4>
+                <p>Capture, qualify, and nurture leads from all channels. Quick-add, CSV import, WhatsApp integration, and automated scoring.</p>
+                <span class="tag">Core</span>
             </div>
-            <div class="feature-card">
-                <div class="icon icon-green">🎯</div>
-                <h4>Define Target Users</h4>
-                <p>Add segments with demographics, budgets, pain points, and estimated market size. Link real leads from your CRM.</p>
+            <div class="md-card">
+                <div class="ico i-g">📋</div>
+                <h4>Application Tracking</h4>
+                <p>Track every application from submission to visa. Kanban board, document management, status updates, and agent assignment.</p>
+                <span class="tag">Core</span>
             </div>
-            <div class="feature-card">
-                <div class="icon icon-purple">🔬</div>
-                <h4>Research &amp; Validate</h4>
-                <p>Assign team members to research each segment. Add findings, attach files, and track validation status per segment.</p>
+            <div class="md-card">
+                <div class="ico i-p">📧</div>
+                <h4>Marketing Campaigns</h4>
+                <p>Create and send email campaigns, track open rates, manage templates, and automate follow-ups. Built-in email integration.</p>
+                <span class="tag">Growth</span>
             </div>
-            <div class="feature-card">
-                <div class="icon icon-orange">📊</div>
-                <h4>Data-Driven Decisions</h4>
-                <p>See matched lead counts, validation progress bars, and team input — all in one place before green-lighting.</p>
+            <div class="md-card">
+                <div class="ico i-o">🎓</div>
+                <h4>Education Models</h4>
+                <p>Manage universities, courses, countries, intakes, and requirements. Match students to the right programs automatically.</p>
+                <span class="tag">Core</span>
             </div>
-            <div class="feature-card">
-                <div class="icon icon-red">📎</div>
-                <h4>Link Real Leads</h4>
-                <p>Connect CRM leads as validation samples. Instantly see how many active leads match each target segment.</p>
+            <div class="md-card">
+                <div class="ico i-r">✅</div>
+                <h4>Attendance & Tasks</h4>
+                <p>Track student counseling sessions, staff attendance, follow-up tasks, and meeting schedules. Never miss a deadline.</p>
+                <span class="tag">Productivity</span>
             </div>
-            <div class="feature-card">
-                <div class="icon icon-indigo">🔄</div>
-                <h4>Track Progress</h4>
-                <p>Move ideas through stages: Concept → Researching → Validating → Approved/Rejected. Full activity log.</p>
-            </div>
-        </div>
-        <div class="features-more">
-            <h3>More Powerful Features</h3>
-            <div class="grid">
-                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Role-Based Access</h4><p>Admin, Manager, Staff, Agent — each with appropriate permissions.</p></div></div>
-                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Activity Timeline</h4><p>Full activity log for every idea — who did what and when.</p></div></div>
-                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Lead Matching</h4><p>Auto-count how many leads match a segment's criteria from your CRM.</p></div></div>
-                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Task Assignment</h4><p>Assign researchers to segments and track their progress.</p></div></div>
-                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>File Attachments</h4><p>Attach research PDFs, survey results, and supporting docs.</p></div></div>
-                <div class="item"><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><div><h4>Campaign Integration</h4><p>Turn approved ideas into email campaigns directly from KahfCRM.</p></div></div>
+            <div class="md-card">
+                <div class="ico i-i">💡</div>
+                <h4>Idea Validation</h4>
+                <p>Validate new destinations, courses, and services before building. Capture ideas, research segments, and make data-backed decisions.</p>
+                <span class="tag">New</span>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ─── Dashboard Preview ─── -->
-<section class="dashboard-preview" id="demo">
+<!-- ─── Extra Features ─── -->
+<section class="extras">
     <div class="inner">
-        <h2 class="section-title">See It in Action</h2>
-        <p class="section-sub">A live preview of the Idea Validation dashboard — real interface, real data.</p>
-        <div class="dash-frame">
-            <div class="dash-head">
-                <h3>Idea Validation <span style="font-weight:400;color:var(--text-muted);font-size:.85rem;">· 12 ideas</span></h3>
+        <h2 class="sec-title">More Powerful Capabilities</h2>
+        <p class="sec-sub">Built-in tools that make your team faster and smarter.</p>
+        <div class="grid">
+            <div class="ex-card"><div class="ico">📊</div><h4>Conversion Funnel</h4><p>Visual pipeline from lead to enrollment. Spot bottlenecks instantly.</p></div>
+            <div class="ex-card"><div class="ico">📱</div><h4>WhatsApp Ready</h4><p>Send messages & track conversations directly from the CRM.</p></div>
+            <div class="ex-card"><div class="ico">📈</div><h4>Team Dashboard</h4><p>Performance metrics, conversion rates, and agent rankings.</p></div>
+            <div class="ex-card"><div class="ico">🔐</div><h4>Role-Based Access</h4><p>Admin, Manager, Staff, Agent — granular permissions for every user.</p></div>
+            <div class="ex-card"><div class="ico">📎</div><h4>CSV Import</h4><p>Bulk import leads and students from spreadsheets in seconds.</p></div>
+            <div class="ex-card"><div class="ico">🏷️</div><h4>Custom Fields</h4><p>Add any data point you need — no coding required.</p></div>
+            <div class="ex-card"><div class="ico">💰</div><h4>bKash/Nagad</h4><p>Local payment gateway integration for Bangladesh.</p></div>
+            <div class="ex-card"><div class="ico">🔔</div><h4>Smart Reminders</h4><p>Automated follow-up alerts for leads and applications.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Demo Section ─── -->
+<section class="demos" id="demos">
+    <div class="inner">
+        <h2 class="sec-title">See KahfCRM in Action</h2>
+        <p class="sec-sub">Explore three core modules with real dummy data — no sign-up required.</p>
+
+        <!-- Leads Demo -->
+        <div class="d-frame" style="margin-bottom:40px;">
+            <div class="d-head">
+                <h3>📋 Lead Management <small>· 1,248 leads this month</small></h3>
+                <span class="btn btn-p btn-sm">+ Add Lead</span>
+            </div>
+            <div class="d-tabs">
+                <span class="t active">All Leads</span>
+                <span class="t">New</span>
+                <span class="t">Contacted</span>
+                <span class="t">Qualified</span>
+                <span class="t">Converted</span>
+            </div>
+            <div class="d-tbar">
+                <input type="search" placeholder="Search leads...">
+                <span class="chip">Source: All ▼</span>
+                <span class="chip">Country: All ▼</span>
+                <span class="chip">Agent: All ▼</span>
+            </div>
+            <div class="d-body">
+                <table class="d-table">
+                    <thead><tr><th>Name</th><th>Source</th><th>Country</th><th>Course</th><th>Agent</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td class="name">Fahim Rahman</td><td>Facebook</td><td>🇨🇦 Canada</td><td>CS (MSc)</td><td>Farzana</td><td><span class="badge bd-1">New</span></td></tr>
+                        <tr><td class="name">Nusrat Jahan</td><td>Referral</td><td>🇦🇺 Australia</td><td>Nursing</td><td>Ashiqur</td><td><span class="badge bd-2">Contacted</span></td></tr>
+                        <tr><td class="name">Tanvir Hasan</td><td>Website</td><td>🇬🇧 UK</td><td>MBA</td><td>Rakib</td><td><span class="badge bd-3">Qualified</span></td></tr>
+                        <tr><td class="name">Sadia Islam</td><td>WhatsApp</td><td>🇨🇦 Canada</td><td>AI/ML</td><td>Farzana</td><td><span class="badge bd-3">Qualified</span></td></tr>
+                        <tr><td class="name">Mehedi Khan</td><td>Google Ads</td><td>🇩🇪 Germany</td><td>Engineering</td><td>N/A</td><td><span class="badge bd-1">New</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Kanban Demo -->
+        <div class="d-frame" style="margin-bottom:40px;">
+            <div class="d-head">
+                <h3>📌 Application Pipeline <small>· Kanban View</small></h3>
+                <span class="btn btn-o btn-sm" style="cursor:default;">+ New Application</span>
+            </div>
+            <div class="d-body">
+                <div class="d-kanban">
+                    <div class="d-col"><h4>Applied <span>3</span></h4>
+                        <div class="d-card"><h5>Fahim — UBC</h5><p>MSc CS · Sep 2026</p></div>
+                        <div class="d-card"><h5>Nusrat — UoM</h5><p>Nursing · Jul 2026</p></div>
+                        <div class="d-card"><h5>Tanvir — LSE</h5><p>MBA · Sep 2026</p></div>
+                    </div>
+                    <div class="d-col"><h4>Offer Received <span>2</span></h4>
+                        <div class="d-card"><h5>Sadia — UoT</h5><p>AI/ML · Conditional</p></div>
+                        <div class="d-card"><h5>Rafi — Monash</h5><p>IT · Unconditional ✅</p></div>
+                    </div>
+                    <div class="d-col"><h4>Visa Processing <span>2</span></h4>
+                        <div class="d-card"><h5>Mahir — UBC</h5><p>Docs submitted</p></div>
+                        <div class="d-card"><h5>Jui — UK</h5><p>Bio appointment</p></div>
+                    </div>
+                    <div class="d-col"><h4>Enrolled <span>1</span></h4>
+                        <div class="d-card"><h5>Karim — UTS</h5><p>🎉 Visa granted</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Idea Validation Demo -->
+        <div class="d-frame">
+            <div class="d-head">
+                <h3>💡 Idea Validation <small>· 12 active ideas</small></h3>
                 <span class="btn btn-p btn-sm">+ New Idea</span>
             </div>
-            <div class="dash-tabs">
+            <div class="d-tabs">
                 <span class="t active">All Ideas</span>
                 <span class="t">My Ideas</span>
                 <span class="t">Archived</span>
             </div>
-            <div class="dash-toolbar">
+            <div class="d-tbar">
                 <input type="search" placeholder="Search ideas..." value="Canada">
                 <span class="chip">Stage: All ▼</span>
                 <span class="chip">Category: All ▼</span>
             </div>
-            <div class="dash-body">
-                <div class="idea-row">
-                    <div class="ico icon-blue">🌍</div>
-                    <div class="info">
-                        <h4>Study in Canada — AI/ML Programs</h4>
-                        <div class="meta"><span class="stage st-valid">🔬 Validating</span><span>Assigned: Farzana</span><span>Updated: 2 days ago</span></div>
-                    </div>
-                    <div class="progress"><div class="pbar" style="margin-bottom:2px;"><div class="fill" style="width:60%;background:var(--p);"></div></div><span style="font-size:.74rem;color:var(--text-muted);">3/5 validated</span></div>
-                </div>
-                <div class="idea-row">
-                    <div class="ico icon-green">📚</div>
-                    <div class="info">
-                        <h4>IELTS Bootcamp — Online Cohort</h4>
-                        <div class="meta"><span class="stage st-research">📝 Researching</span><span>Assigned: N/A</span><span>Updated: 5 days ago</span></div>
-                    </div>
-                    <div class="progress"><div class="pbar" style="margin-bottom:2px;"><div class="fill" style="width:40%;background:#3b82f6;"></div></div><span style="font-size:.74rem;color:var(--text-muted);">2 defined</span></div>
-                </div>
-                <div class="idea-row">
-                    <div class="ico icon-orange">🎯</div>
-                    <div class="info">
-                        <h4>Scholarship Matching Service</h4>
-                        <div class="meta"><span class="stage st-concept">💡 Concept</span><span>Assigned: N/A</span><span>Updated: 1 week ago</span></div>
-                    </div>
-                    <div class="progress"><div class="pbar" style="margin-bottom:2px;"><div class="fill" style="width:0%;"></div></div><span style="font-size:.74rem;color:var(--text-muted);">0/2 validated</span></div>
-                </div>
-                <div class="idea-row">
-                    <div class="ico icon-purple">🇦🇺</div>
-                    <div class="info">
-                        <h4>Australia Regional Visa Pathway</h4>
-                        <div class="meta"><span class="stage st-approved">✅ Approved</span><span>Assigned: Ashiqur</span><span>Updated: 3 days ago</span></div>
-                    </div>
-                    <div class="progress"><div class="pbar" style="margin-bottom:2px;"><div class="fill" style="width:100%;background:#10b981;"></div></div><span style="font-size:.74rem;color:var(--text-muted);">4/4 validated</span></div>
-                </div>
+            <div class="d-body">
+                <table class="d-table">
+                    <thead><tr><th>Idea</th><th>Category</th><th>Stage</th><th>Assigned</th><th>Progress</th></tr></thead>
+                    <tbody>
+                        <tr><td class="name">🌍 Study in Canada — AI/ML</td><td>Destination</td><td><span class="badge bd-2">🔬 Validating</span></td><td>Farzana</td><td>3/5 <span style="color:var(--p);font-weight:600;">60%</span></td></tr>
+                        <tr><td class="name">📚 IELTS Bootcamp — Online</td><td>Service</td><td><span class="badge bd-1">📝 Researching</span></td><td>N/A</td><td>2 defined</td></tr>
+                        <tr><td class="name">🎯 Scholarship Matching Service</td><td>Service</td><td><span class="badge" style="background:#f1f5f9;color:#475569;">💡 Concept</span></td><td>N/A</td><td>0/2</td></tr>
+                        <tr><td class="name">🇦🇺 Aus Regional Visa Pathway</td><td>Destination</td><td><span class="badge bd-3">✅ Approved</span></td><td>Ashiqur</td><td>4/4 <span style="color:#059669;font-weight:600;">100%</span></td></tr>
+                        <tr><td class="name">🇬🇧 UK PSW Consulting Package</td><td>Service</td><td><span class="badge bd-2">🔬 Validating</span></td><td>Rakib</td><td>2/3 <span style="color:var(--p);font-weight:600;">66%</span></td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -551,38 +485,37 @@
 <!-- ─── Pricing ─── -->
 <section class="pricing" id="pricing">
     <div class="inner">
-        <h2 class="section-title">Simple, Transparent Pricing</h2>
-        <p class="section-sub">Choose the plan that fits your consultancy. Free 14-day trial on all plans.</p>
+        <h2 class="sec-title">Simple, Transparent Pricing</h2>
+        <p class="sec-sub">Pay for what you need. All plans include a 14-day free trial with full access.</p>
         <div class="offer">
-            <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-            <strong>Early Bird Offer</strong> — First 50 consultancies get <strong>20% off</strong> for the first year
-            <p>Plus: free onboarding &amp; dedicated support during beta</p>
+            <strong>🎉 Early Bird Offer</strong> — First 50 consultancies get <strong>20% off</strong> for the first year
+            <p>Free onboarding &amp; dedicated support during beta period</p>
         </div>
         <div class="grid">
             <div class="plan">
                 <h3>Starter</h3>
-                <p class="sub">For small consultancies</p>
+                <p class="sub">For small teams</p>
                 <div class="price">$29<span>/month</span></div>
                 <div class="save">Early bird: $23/mo</div>
                 <ul>
                     <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Up to 5 team members</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> 50 active ideas</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Basic CRM integration</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Lead + Application modules</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Education models</li>
                     <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Email support</li>
                 </ul>
                 <button class="btn btn-o">Start Free Trial</button>
             </div>
             <div class="plan featured">
-                <div class="badge">Most Popular</div>
+                <div class="bage">Most Popular</div>
                 <h3>Professional</h3>
-                <p class="sub">For growing teams</p>
+                <p class="sub">For growing consultancies</p>
                 <div class="price">$79<span>/month</span></div>
                 <div class="save" style="color:#fde68a;">Early bird: $63/mo</div>
                 <ul>
                     <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Up to 20 team members</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Unlimited ideas</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Full CRM integration</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Lead matching &amp; analytics</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> All modules including marketing</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Idea Validation module</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Kanban &amp; analytics</li>
                     <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Priority support</li>
                 </ul>
                 <button class="btn">Start Free Trial</button>
@@ -597,7 +530,7 @@
                     <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Dedicated account manager</li>
                     <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Custom integrations</li>
                     <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> SLA guarantee</li>
-                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Human scoring option</li>
+                    <li><svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> On-premise option</li>
                 </ul>
                 <button class="btn btn-o">Contact Sales</button>
             </div>
@@ -608,32 +541,32 @@
 <!-- ─── FAQ ─── -->
 <section class="faq" id="faq">
     <div class="inner">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <p class="section-sub">Everything you need to know about the Idea Validation feature.</p>
+        <h2 class="sec-title">Frequently Asked Questions</h2>
+        <p class="sec-sub">Everything you need to know about KahfCRM.</p>
         <div class="list">
             <details>
-                <summary>How does Idea Validation integrate with my existing CRM data? <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
-                <div class="a">When you add target segments, the system automatically scans your existing leads and shows how many match each segment's criteria. You can also manually link specific leads as validation evidence.</div>
+                <summary>What makes KahfCRM different from other CRMs? <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+                <div class="a">KahfCRM is purpose-built for South Asian education consultancies. Unlike generic CRMs (Salesforce, HubSpot), we understand the local workflow — from bKash payments to university-specific application tracking, education models, and WhatsApp-first communication.</div>
             </details>
             <details>
-                <summary>What stages can an idea go through?</summary>
-                <div class="a">Every idea progresses through: <strong>Concept</strong> (just captured) → <strong>Researching</strong> (gathering data) → <strong>Validating</strong> (testing assumptions) → <strong>Approved</strong> (ready to build) or <strong>Rejected</strong> (killed with reason captured).</div>
+                <summary>Can I migrate my existing data from spreadsheets?</summary>
+                <div class="a">Yes! We support CSV/Excel import for leads, students, and applications. Our onboarding team will help map your fields and get everything set up within 24-48 hours.</div>
             </details>
             <details>
-                <summary>Can multiple team members work on the same idea?</summary>
-                <div class="a">Absolutely. You can assign different researchers to different target segments within the same idea. Each person adds their findings, and managers can review everything before making a decision.</div>
+                <summary>Is WhatsApp integration included?</summary>
+                <div class="a">WhatsApp messaging is available in the Professional plan and above. Send messages, track conversation history, and log communication right inside the lead record.</div>
             </details>
             <details>
-                <summary>Is there a way to export validation reports?</summary>
-                <div class="a">Currently in development. The Professional plan will include PDF export of complete validation reports, including segment research, matched leads, and decision history.</div>
+                <summary>Do you offer local payment methods?</summary>
+                <div class="a">Absolutely. We support bKash, Nagad, and bank transfers for Bangladesh-based consultancies. International payments via credit/debit card are also accepted.</div>
             </details>
             <details>
-                <summary>How long does setup take?</summary>
-                <div class="a">Most teams are up and running within 24 hours. No technical expertise needed — if you already use KahfCRM, the Idea Validation tab appears automatically with your existing team permissions.</div>
+                <summary>How does the Idea Validation module work?</summary>
+                <div class="a">Capture product ideas (new destinations, courses, services), define target student segments, assign researchers, track validation progress through stages (Concept → Researching → Validating → Approved/Rejected), and link real CRM leads as evidence. Makes go/no-go decisions data-backed.</div>
             </details>
             <details>
-                <summary>Can I approve an idea and create a campaign immediately?</summary>
-                <div class="a">Yes! When you approve an idea, you have the option to automatically create an email campaign in KahfCRM's marketing module — perfect for launching new services to your lead database.</div>
+                <summary>Is there a free trial?</summary>
+                <div class="a">Yes! All plans come with a 14-day free trial — no credit card required. You get full access to all features in your chosen plan. If you don't continue, your data is safely deleted.</div>
             </details>
         </div>
     </div>
@@ -642,16 +575,16 @@
 <!-- ─── CTA ─── -->
 <section class="cta" id="cta">
     <div class="inner">
-        <h2>Ready to Start Validating Smarter?</h2>
-        <p>Join the early adopters. Get a free 14-day trial with full access to all features. No credit card required.</p>
+        <h2>Ready to Transform Your Consultancy?</h2>
+        <p>Join the early adopters. Free 14-day trial with full access — no credit card required.</p>
         <div class="cta-form">
-            <div class="row2">
-                <input type="text" placeholder="Your name" value="">
-                <input type="email" placeholder="Email address" value="">
+            <div class="r2">
+                <input type="text" placeholder="Your name">
+                <input type="email" placeholder="Email address">
             </div>
-            <div class="row2">
-                <input type="text" placeholder="Consultancy name" value="">
-                <input type="tel" placeholder="Phone number" value="">
+            <div class="r2">
+                <input type="text" placeholder="Consultancy name">
+                <input type="tel" placeholder="Phone number">
             </div>
             <div class="full">
                 <textarea rows="3" placeholder="Any questions or specific needs?" style="resize:none;"></textarea>
@@ -668,43 +601,26 @@
         <div class="grid">
             <div>
                 <div class="brand"><div class="mark">K</div><span>KahfCRM</span></div>
-                <p>Multi-tenant SaaS CRM built for South Asian education consultancies. Idea Validation is our newest module — make data-backed product decisions.</p>
+                <p>Multi-tenant SaaS CRM built for South Asian education consultancies. Manage leads, applications, marketing, and product validation — all in one place.</p>
             </div>
             <div>
                 <h4>Product</h4>
-                <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#demo">Demo</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
+                <ul><li><a href="#modules">Modules</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#demos">Demo</a></li><li><a href="#faq">FAQ</a></li></ul>
             </div>
             <div>
                 <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Documentation</a></li>
-                    <li><a href="#">API Reference</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Community</a></li>
-                </ul>
+                <ul><li><a href="#">Documentation</a></li><li><a href="#">API Reference</a></li><li><a href="#">Blog</a></li><li><a href="#">Community</a></li></ul>
             </div>
             <div>
                 <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
+                <ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul>
             </div>
         </div>
         <div class="bottom">
             <p>© 2026 KahfCRM. All rights reserved.</p>
             <p>Made with ☕ in Bangladesh 🇧🇩</p>
         </div>
-        <div class="disclaimer">
-            All product names, logos, and brands are property of their respective owners. This is a demonstration landing page.
-        </div>
+        <div class="disc">This is a demonstration landing page. All product names and brands are property of their respective owners.</div>
     </div>
 </footer>
 
